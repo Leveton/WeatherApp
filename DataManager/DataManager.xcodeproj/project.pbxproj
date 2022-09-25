@@ -10,6 +10,8 @@
 		D181546728E0BF4F00F0C652 /* DataManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D181545E28E0BF4F00F0C652 /* DataManager.framework */; };
 		D181546C28E0BF4F00F0C652 /* DataManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D181546B28E0BF4F00F0C652 /* DataManagerTests.swift */; };
 		D181546D28E0BF4F00F0C652 /* DataManager.h in Headers */ = {isa = PBXBuildFile; fileRef = D181546128E0BF4F00F0C652 /* DataManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D1E40DB728E108F4008FC98A /* DataManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E40DB628E108F4008FC98A /* DataManagerProtocol.swift */; };
+		D1E40DB928E10959008FC98A /* APIManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E40DB828E10959008FC98A /* APIManagerProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,6 +29,8 @@
 		D181546128E0BF4F00F0C652 /* DataManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataManager.h; sourceTree = "<group>"; };
 		D181546628E0BF4F00F0C652 /* DataManagerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DataManagerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D181546B28E0BF4F00F0C652 /* DataManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManagerTests.swift; sourceTree = "<group>"; };
+		D1E40DB628E108F4008FC98A /* DataManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManagerProtocol.swift; sourceTree = "<group>"; };
+		D1E40DB828E10959008FC98A /* APIManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManagerProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,6 +52,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D11E936028E0DA6E00083E12 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				D1E40DB628E108F4008FC98A /* DataManagerProtocol.swift */,
+				D1E40DB828E10959008FC98A /* APIManagerProtocol.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		D181545428E0BF4F00F0C652 = {
 			isa = PBXGroup;
 			children = (
@@ -69,6 +82,7 @@
 		D181546028E0BF4F00F0C652 /* DataManager */ = {
 			isa = PBXGroup;
 			children = (
+				D11E936028E0DA6E00083E12 /* Services */,
 				D181546128E0BF4F00F0C652 /* DataManager.h */,
 			);
 			path = DataManager;
@@ -144,6 +158,7 @@
 				TargetAttributes = {
 					D181545D28E0BF4F00F0C652 = {
 						CreatedOnToolsVersion = 14.0;
+						LastSwiftMigration = 1400;
 					};
 					D181546528E0BF4F00F0C652 = {
 						CreatedOnToolsVersion = 14.0;
@@ -191,6 +206,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D1E40DB928E10959008FC98A /* APIManagerProtocol.swift in Sources */,
+				D1E40DB728E108F4008FC98A /* DataManagerProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -336,6 +353,7 @@
 		D181547128E0BF4F00F0C652 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -356,6 +374,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -364,6 +383,7 @@
 		D181547228E0BF4F00F0C652 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -392,6 +412,7 @@
 		D181547428E0BF4F00F0C652 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2SPMBW99YZ;
@@ -408,6 +429,7 @@
 		D181547528E0BF4F00F0C652 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2SPMBW99YZ;
