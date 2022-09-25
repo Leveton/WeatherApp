@@ -10,6 +10,10 @@ import Foundation
 public protocol APIManagerProtocol {
 }
 
+public enum APIManagerService {
+    case currentSummary
+}
+
 // MARK: - APIManager Protocol Methods
 extension APIManagerProtocol {
     

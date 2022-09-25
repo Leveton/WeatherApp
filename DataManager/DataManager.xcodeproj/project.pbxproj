@@ -12,6 +12,10 @@
 		D181546D28E0BF4F00F0C652 /* DataManager.h in Headers */ = {isa = PBXBuildFile; fileRef = D181546128E0BF4F00F0C652 /* DataManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D1E40DB728E108F4008FC98A /* DataManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E40DB628E108F4008FC98A /* DataManagerProtocol.swift */; };
 		D1E40DB928E10959008FC98A /* APIManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E40DB828E10959008FC98A /* APIManagerProtocol.swift */; };
+		D1E40DC228E11124008FC98A /* APIManagerProtocol_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E40DC128E11124008FC98A /* APIManagerProtocol_Tests.swift */; };
+		D1E40DC428E11140008FC98A /* DataManagerProtocol_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E40DC328E11140008FC98A /* DataManagerProtocol_Tests.swift */; };
+		D1E40DC728E11174008FC98A /* MockDataManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E40DC628E11174008FC98A /* MockDataManagerProtocol.swift */; };
+		D1E40DCA28E11199008FC98A /* MockAPIManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E40DC928E11199008FC98A /* MockAPIManagerProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,6 +35,10 @@
 		D181546B28E0BF4F00F0C652 /* DataManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManagerTests.swift; sourceTree = "<group>"; };
 		D1E40DB628E108F4008FC98A /* DataManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManagerProtocol.swift; sourceTree = "<group>"; };
 		D1E40DB828E10959008FC98A /* APIManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManagerProtocol.swift; sourceTree = "<group>"; };
+		D1E40DC128E11124008FC98A /* APIManagerProtocol_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManagerProtocol_Tests.swift; sourceTree = "<group>"; };
+		D1E40DC328E11140008FC98A /* DataManagerProtocol_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManagerProtocol_Tests.swift; sourceTree = "<group>"; };
+		D1E40DC628E11174008FC98A /* MockDataManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDataManagerProtocol.swift; sourceTree = "<group>"; };
+		D1E40DC928E11199008FC98A /* MockAPIManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAPIManagerProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,9 +99,21 @@
 		D181546A28E0BF4F00F0C652 /* DataManagerTests */ = {
 			isa = PBXGroup;
 			children = (
+				D1E40DC528E11152008FC98A /* Services */,
 				D181546B28E0BF4F00F0C652 /* DataManagerTests.swift */,
+				D1E40DC628E11174008FC98A /* MockDataManagerProtocol.swift */,
+				D1E40DC928E11199008FC98A /* MockAPIManagerProtocol.swift */,
 			);
 			path = DataManagerTests;
+			sourceTree = "<group>";
+		};
+		D1E40DC528E11152008FC98A /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				D1E40DC128E11124008FC98A /* APIManagerProtocol_Tests.swift */,
+				D1E40DC328E11140008FC98A /* DataManagerProtocol_Tests.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -215,7 +235,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D1E40DC228E11124008FC98A /* APIManagerProtocol_Tests.swift in Sources */,
+				D1E40DC728E11174008FC98A /* MockDataManagerProtocol.swift in Sources */,
+				D1E40DC428E11140008FC98A /* DataManagerProtocol_Tests.swift in Sources */,
 				D181546C28E0BF4F00F0C652 /* DataManagerTests.swift in Sources */,
+				D1E40DCA28E11199008FC98A /* MockAPIManagerProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
