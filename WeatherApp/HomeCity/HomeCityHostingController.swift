@@ -24,5 +24,4 @@ class HomeCityViewController: UIViewController {
         
         return vc
     }
-    
 }
