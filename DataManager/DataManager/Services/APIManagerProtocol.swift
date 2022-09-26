@@ -17,7 +17,13 @@ public enum APIManagerService {
 // MARK: - APIManager Protocol Methods
 extension APIManagerProtocol {
     
-    public func fetchCurrentSummary(withCoordinates coordinates: String, completion: ((_ json: [String: Any]?, _ error: Error?) -> Void)?) {
+    //TODO: Change to Result Type
+    public func fetchCurrentSummary(withCoordinates coordinates: (lat: Double, long: Double), completion: ((_ json: [String: Any]?, _ error: Error?) -> Void)?) {
+        completion?(nil, nil)
+    }
+    
+    //TODO: Change to Result Type
+    public func fetchCityList(withCoordinateGroup group: [[Double]], completion: ((_ json: [String: Any]?, _ error: Error?) -> Void)?) {
         completion?(nil, nil)
     }
 }
