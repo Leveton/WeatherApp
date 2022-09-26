@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="fBa-Mr-pNS">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
@@ -8,41 +8,42 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
-            <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="WeatherApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="123" y="-2"/>
-        </scene>
-        <!--View Controller-->
+        <!--Home City View Controller-->
         <scene sceneID="2PR-ga-FNB">
             <objects>
-                <viewController id="fBa-Mr-pNS" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeCityViewController" id="fBa-Mr-pNS" customClass="HomeCityViewController" customModule="WeatherApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0pi-Du-oyB">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Spc-VV-jjI">
-                                <rect key="frame" x="84" y="358" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Spc-VV-jjI">
+                                <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                                <connections>
+                                    <segue destination="oPT-t0-IAa" kind="embed" destinationCreationSelector="HomeCityViewControllerToHomeCityView:" id="gPa-fA-erd"/>
+                                </connections>
                             </containerView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="YIv-PW-EO8"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Spc-VV-jjI" firstAttribute="leading" secondItem="YIv-PW-EO8" secondAttribute="leading" id="NVe-gb-RzS"/>
+                            <constraint firstItem="Spc-VV-jjI" firstAttribute="trailing" secondItem="YIv-PW-EO8" secondAttribute="trailing" id="OQ9-LQ-env"/>
+                            <constraint firstItem="Spc-VV-jjI" firstAttribute="top" secondItem="0pi-Du-oyB" secondAttribute="top" id="Ycc-Zc-bM2"/>
+                            <constraint firstAttribute="bottom" secondItem="Spc-VV-jjI" secondAttribute="bottom" id="q69-TR-v5n"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p8m-kw-n5I" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="848" y="-2"/>
+            <point key="canvasLocation" x="807.69230769230762" y="-2.1327014218009479"/>
+        </scene>
+        <!--Hosting Controller-->
+        <scene sceneID="Q2b-cp-LYu">
+            <objects>
+                <hostingController id="oPT-t0-IAa" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3Pf-eO-twG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1518" y="-2"/>
         </scene>
     </scenes>
     <resources>
