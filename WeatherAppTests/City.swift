@@ -52,18 +52,20 @@ final class CityDataModelTests: XCTestCase {
         }
         
         var city = City(
-            id: 2643743,
             name: "London",
-            temp: 287.87,
             lat: 51.5085,
-            lon: -0.1257
+            lon: -0.1257,
+            id: 2643743,
+            temp: 287.87
         )
-        
-        XCTAssertNotEqual(city, decodedCity)
+        print(city == decodedCity)
+        XCTAssertEqual(city, decodedCity)
         
         let weatherElement = City.Weather(description: "scattered clouds")
         city.description = weatherElement.description
         XCTAssertEqual(city, decodedCity)
+        city.name = "Palm Springs"
+        XCTAssertNotEqual(city, decodedCity)
     }
 
 }
