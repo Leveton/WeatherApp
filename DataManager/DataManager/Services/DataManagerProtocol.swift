@@ -14,26 +14,8 @@ public protocol DataManagerProtocol {
 // MARK: - Data interface
 extension DataManagerProtocol {
     
-    //TODO: Change to Result Type
-    public func fetchCurrentSummary(withCoordinates coordinates: (lat: Double, long: Double), completion: ((_ json: [String: Any]?, _ error: Error?) -> Void)?) {
-        
-        //Allow for caching
-        
-        apiManager.fetchCurrentSummary(withCoordinates: coordinates, completion: {json, error in
-            if let error = error {
-                DispatchQueue.main.async {
-                    completion?(nil, error)
-                }
-            } else if let json = json{
-                DispatchQueue.main.async {
-                    completion?(json, nil)
-                }
-            } else {
-                DispatchQueue.main.async {
-                    completion?(nil, nil)
-                }
-            }
-        })
+    public func fetchCurrentSummary(withName name: String? = nil, withCoordinates coordinates: (lat: Double, long: Double)? = nil) async -> Result<Data?, APIManagerError> {
+        return await apiManager.fetchCurrentSummary(withName: name, withCoordinates: coordinates)
     }
     
     //TODO: Change to Result Type
