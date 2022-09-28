@@ -55,7 +55,7 @@ final class CityDataModelTests: XCTestCase {
             name: "London",
             lat: 51.5085,
             lon: -0.1257,
-            id: 2643743,
+            openWeatherID: 2643743,
             temp: 287.87
         )
         print(city == decodedCity)

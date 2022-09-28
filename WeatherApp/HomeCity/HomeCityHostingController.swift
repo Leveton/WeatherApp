@@ -13,6 +13,7 @@ class HomeCityHostingController: UIHostingController<HomeCityView> {
 }
 
 class HomeCityViewController: UIViewController {
+    let viewModel = HomeCityViewModel()
     fileprivate lazy var dataManager: DataManagerProtocol = DataManager.sharedInstance
     var city: City?
     
@@ -46,7 +47,6 @@ class HomeCityViewController: UIViewController {
     
     @IBSegueAction func HomeCityViewControllerToHomeCityView(_ coder: NSCoder) -> UIViewController? {
         
-        let viewModel = HomeCityViewModel()
         let homeCityView = HomeCityView(viewModel: viewModel)
         
         guard let vc = HomeCityHostingController(coder: coder, rootView: homeCityView) else {

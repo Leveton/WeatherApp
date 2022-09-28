@@ -7,17 +7,21 @@
 
 import Foundation
 
+protocol WeatherProtocol {
+    var fahrenheit: Float? {get}
+}
+
 struct City {
 
     //MARK: Required
-    let iden = UUID()
+    let uuid = UUID()
     var name: String
-    //TODO: Use CLLocationCoordinate2D
-    var lat: Double
-    var lon: Double
     
     //MARK: Optional
-    var id: Int?
+    var lat: Double? //TODO: Use CLLocationCoordinate2D
+    var lon: Double?
+    var openWeatherID: Int?
+    var googlePlacesID: String?
     var temp: Float?
     var timezone: Int?
     var humidity: Int?
@@ -77,7 +81,7 @@ extension City: Codable {
 
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: RootKeys.self)
-        id = try? container.decode(Int.self, forKey: .id)
+        openWeatherID = try? container.decode(Int.self, forKey: .id)
         timezone = try? container.decode(Int.self, forKey: .timezone)
         name = try container.decode(String.self, forKey: .name)
 
@@ -96,9 +100,9 @@ extension City: Codable {
         sunset = try? sysContainer?.decode(Int.self, forKey: .sunset)
         country = try? sysContainer?.decode(String.self, forKey: .country)
         
-        let coordContainer = try container.nestedContainer(keyedBy: CoordKeys.self, forKey: .coord)
-        lat = try coordContainer.decode(Double.self, forKey: .lat)
-        lon = try coordContainer.decode(Double.self, forKey: .lon)
+        let coordContainer = try? container.nestedContainer(keyedBy: CoordKeys.self, forKey: .coord)
+        lat = try? coordContainer?.decode(Double.self, forKey: .lat)
+        lon = try? coordContainer?.decode(Double.self, forKey: .lon)
         
         let weatherContainer = try? container.decode([Weather].self, forKey: .weather).first
         description = weatherContainer?.description
@@ -106,7 +110,7 @@ extension City: Codable {
 }
 
 //MARK: methods and computed properties
-extension City {
+extension City: WeatherProtocol {
     var fahrenheit: Float? {
         guard let kelvin = self.temp else {return nil}
         return (kelvin - 273.15) * 9/5 + 32

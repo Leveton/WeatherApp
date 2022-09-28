@@ -10,3 +10,12 @@ import SwiftUI
 
 class CityForcastHostingController: UIHostingController<CityForcastView> {
 }
+
+class CityForcastViewController: UIViewController {
+    let viewModel = CityForcastViewModel()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+    }
+}

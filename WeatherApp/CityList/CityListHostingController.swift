@@ -11,17 +11,11 @@ import SwiftUI
 class CityListHostingController: UIHostingController<CityListView> {
 }
 
-//class CityListViewController: UIViewController {
-//    
-//    @IBSegueAction func HomeCityViewControllerToHomeCityView(_ coder: NSCoder) -> UIViewController? {
-//        
-//        let viewModel = CityListViewModel()
-//        let cityListView = CityListView(viewModel: viewModel)
-//        
-//        guard let vc = CityListHostingController(coder: coder, rootView: cityListView) else {
-//            return UIViewController()
-//        }
-//        
-//        return vc
-//    }
-//}
+class CityListViewController: UIViewController {
+    let viewModel = CityListViewModel()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+    }
+}
