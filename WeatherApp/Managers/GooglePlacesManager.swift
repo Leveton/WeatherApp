@@ -24,8 +24,8 @@ open class GooglePlacesManager: GooglePlacesManagerProtocol {
     
     func findPlaces(_ query: String, completion: @escaping (Result<[City], Error>) -> Void) {
         let filter = GMSAutocompleteFilter()
-        filter.type = .geocode
-        //filter.types = ["geocode"]
+        
+        filter.types = ["geocode"]
         placesClient.findAutocompletePredictions(fromQuery: query, filter: nil, sessionToken: nil, callback: {results, error in
             guard let results = results, error == nil else {
                 completion(.failure(GooglePlacesError.placePredictionNotFound))

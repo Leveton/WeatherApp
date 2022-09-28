@@ -21,8 +21,8 @@ class CityAddViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = NSLocalizedString("Find City", comment: "FIND_CITY")
         svc.searchResultsUpdater = self
-        svc.searchBar.backgroundColor = .secondarySystemBackground
         navigationItem.searchController = svc
     }
 }

@@ -7,6 +7,7 @@
 
 import XCTest
 @testable import WeatherApp
+@testable import DataManager
 
 final class WeatherAppTests: XCTestCase {
 
