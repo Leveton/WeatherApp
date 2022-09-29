@@ -9,9 +9,6 @@ import UIKit
 import SwiftUI
 import DataManager
 
-class HomeCityHostingController: UIHostingController<HomeCityView> {
-}
-
 class HomeCityViewController: UIViewController {
     let viewModel = HomeCityViewModel()
     fileprivate lazy var dataManager: DataManagerProtocol = DataManager.sharedInstance
@@ -26,7 +23,7 @@ class HomeCityViewController: UIViewController {
     }
     
     func fetchCity() async -> City? {
-        let result: Result<Data?, APIManagerError> = await dataManager.fetchCurrentSummary(withName: "foo", withCoordinates: nil)
+        let result: Result<Data?, APIManagerError> = await dataManager.fetchCurrentSummary(withName: "Miami", withCoordinates: nil)
         switch result {
         
         case .success(let data):
@@ -56,3 +53,5 @@ class HomeCityViewController: UIViewController {
         return vc
     }
 }
+
+class HomeCityHostingController: UIHostingController<HomeCityView> {}

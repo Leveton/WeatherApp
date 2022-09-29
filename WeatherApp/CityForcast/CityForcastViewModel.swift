@@ -8,4 +8,9 @@
 import Foundation
 
 class CityForcastViewModel: ObservableObject {
+    @Published var city: City
+    
+    init(_ city: City) {
+        self.city = city
+    }
 }
