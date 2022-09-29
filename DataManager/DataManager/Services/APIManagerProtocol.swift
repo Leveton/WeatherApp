@@ -8,6 +8,7 @@
 import Foundation
 
 public protocol APIManagerProtocol {
+    var openWeatherAPIKey: String {get}
 }
 
 public enum APIManagerService {
@@ -21,53 +22,41 @@ public enum APIManagerError: Error {
 
 // MARK: - APIManager Protocol Methods
 extension APIManagerProtocol {
-    
-    //Find current weather by name or lat-long
+    //Find current weather by name or coordinates
     public func fetchCurrentSummary(withName name: String? = nil, withCoordinates coordinates: (lat: Double, long: Double)? = nil) async -> Result<Data?, APIManagerError> {
-        //https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid=5855a2848bc9b48e31ae7a75e357201c
-        guard let cityURL = URL(string: "https://api.openweathermap.org/data/2.5/weather?q=Miami,us&APPID=5855a2848bc9b48e31ae7a75e357201c") else {
+        
+        let url: URL? = {
+            if let coord = coordinates {
+                return URL(string: "https://api.openweathermap.org/data/2.5/weather?lat=\(coord.lat)&lon=\(coord.long)&appid=\(openWeatherAPIKey)")
+            } else if let name = name {
+                return URL(string: "https://api.openweathermap.org/data/2.5/weather?q=\(name),us&APPID=\(openWeatherAPIKey)")
+            }
+            return nil
+        }()
+        
+        guard let cityURL = url else {
             return .failure(.invalidURL)
         }
         
-        if let _ = name {
-            
-            do {
-                let data = try await URLSession.shared.data(from: cityURL).0
-                return .success(data)
-            } catch {
-                return .failure(.failedRequest(error: error))
-            }
-            
-            
-        } else if let _ = coordinates {
-            
-            do {
-                let data = try await URLSession.shared.data(from: cityURL).0
-                return .success(data)
-            } catch {
-                return .failure(.failedRequest(error: error))
-            }
-        } else {
-            return .failure(.noData)
+        do {
+            let data = try await URLSession.shared.data(from: cityURL).0
+            return .success(data)
+        } catch {
+            return .failure(.failedRequest(error: error))
         }
     }
     
     //Find 5 day / 3 hour forecast data
-    public func fetchFiveDayForcast(withCoordinates coordinates: (lat: Double, long: Double)? = nil) async -> Result<Data?, APIManagerError> {
-        guard let cityURL = URL(string: "https://api.openweathermap.org/data/2.5/weather?q=Miami,us&APPID=5855a2848bc9b48e31ae7a75e357201c") else {
+    public func fetchFiveDayForcast(withCoordinates coordinates: (lat: Double, long: Double)) async -> Result<Data?, APIManagerError> {
+        guard let cityURL = URL(string: "https://api.openweathermap.org/data/2.5/forecast?lat=\(coordinates.lat)&lon=\(coordinates.long)&appid=\(openWeatherAPIKey)") else {
             return .failure(.invalidURL)
         }
         
-        if let _ = coordinates {
-            
-            do {
-                let data = try await URLSession.shared.data(from: cityURL).0
-                return .success(data)
-            } catch {
-                return .failure(.failedRequest(error: error))
-            }
-        } else {
-            return .failure(.noData)
+        do {
+            let data = try await URLSession.shared.data(from: cityURL).0
+            return .success(data)
+        } catch {
+            return .failure(.failedRequest(error: error))
         }
     }
 }

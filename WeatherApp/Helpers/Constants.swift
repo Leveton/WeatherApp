@@ -7,6 +7,9 @@
 
 import Foundation
 
+//TODO: This should be stored in the user's KeyChain and rotated via the server
+let googlePlacesAPIKey = "AIzaSyBCgO7OTTIn-J4cgnCsaCqthgbbz4ELVt4"
+
 let cityStaticDict = ["Brooklyn": City(name: "Brooklyn",
                                         lat: 40.6593564,
                                         lon: -73.9501857),

@@ -18,8 +18,21 @@ class CityForcastViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if let _ = viewModel {
-            //vm.refreshCurrentCity()
+        Task {
+            await refreshCity()
+            
+        }
+    }
+    
+    private func refreshCity() async {
+        guard let vm = viewModel, let city = homeCity else {return}
+        
+        //Default to coordinates because it's much less error prone than name
+        if let coord = city.coord {
+            let simpleCoord = (lat: coord.latitude, long: coord.longitude)
+            await vm.fetchSummaryWithCoordinates(simpleCoord)
+        } else {
+            await vm.fetchSummaryWithName(city.name)
         }
     }
     
@@ -36,6 +49,7 @@ class CityForcastViewController: UIViewController {
             city.temp = 299.9
             city.feelsLike = 279.9
             city.description = "Slightly windy with a chance of showers"
+            homeCity = city
             return city
         }()
         

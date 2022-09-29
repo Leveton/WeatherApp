@@ -55,7 +55,7 @@ struct CityForcastView: View {
                     
                     Spacer()
                     if let desc = viewModel.city.description {
-                        Text("Conditions are \(desc)")
+                        Text("Summary: \(desc)")
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .font(.custom("SanFranciscoRounded-Bold", size: 27))
                             .foregroundColor(Color(red: 102.0/255.0, green: 102.0/255.0, blue: 255.0/255.0))
