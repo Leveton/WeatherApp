@@ -47,7 +47,7 @@ extension APIManagerProtocol {
     }
     
     //Find 5 day / 3 hour forecast data
-    public func fetchFiveDayForcast(withCoordinates coordinates: (lat: Double, long: Double)) async -> Result<Data?, APIManagerError> {
+    public func fetchFiveDayForecast(withCoordinates coordinates: (lat: Double, long: Double)) async -> Result<Data?, APIManagerError> {
         guard let cityURL = URL(string: "https://api.openweathermap.org/data/2.5/forecast?lat=\(coordinates.lat)&lon=\(coordinates.long)&appid=\(openWeatherAPIKey)") else {
             return .failure(.invalidURL)
         }

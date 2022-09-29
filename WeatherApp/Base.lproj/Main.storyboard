@@ -69,10 +69,10 @@
             </objects>
             <point key="canvasLocation" x="788" y="1"/>
         </scene>
-        <!--City Forcast View Controller-->
+        <!--City Detail View Controller-->
         <scene sceneID="EUk-U6-ikQ">
             <objects>
-                <viewController storyboardIdentifier="CityForcastViewController" id="Ijz-3u-qaG" customClass="CityForcastViewController" customModule="WeatherApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CityDetailViewController" id="Ijz-3u-qaG" customClass="CityDetailViewController" customModule="WeatherApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eAR-4V-bWj">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -80,7 +80,7 @@
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T0f-m1-G2c">
                                 <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                                 <connections>
-                                    <segue destination="PbJ-AN-TcC" kind="embed" destinationCreationSelector="CityForcastViewControllerToCityForcastView:" id="oKS-w0-eJ6"/>
+                                    <segue destination="PbJ-AN-TcC" kind="embed" destinationCreationSelector="CityDetailViewControllerToCityDetailView:" id="IR2-Mt-Ua4"/>
                                 </connections>
                             </containerView>
                         </subviews>

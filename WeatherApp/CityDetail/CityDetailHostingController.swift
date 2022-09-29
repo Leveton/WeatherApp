@@ -1,5 +1,5 @@
 //
-//  CityForcastHostingController.swift
+//  CityDetailHostingController.swift
 //  WeatherApp
 //
 //  Created by Michael Leveton on 9/25/22.
@@ -8,8 +8,8 @@
 import UIKit
 import SwiftUI
 
-class CityForcastViewController: UIViewController {
-    var viewModel: CityForcastViewModel?
+class CityDetailViewController: UIViewController {
+    var viewModel: CityDetailViewModel?
     var homeCity: City?
     
     override func viewDidLoad() {
@@ -36,7 +36,7 @@ class CityForcastViewController: UIViewController {
         }
     }
     
-    @IBSegueAction func CityForcastViewControllerToCityForcastView(_ coder: NSCoder) -> UIViewController? {
+    @IBSegueAction func CityDetailViewControllerToCityDetailView(_ coder: NSCoder) -> UIViewController? {
         //TODO: ask for location services to get current city
         let currentCity: City = {
             if let homeCity = homeCity {
@@ -53,16 +53,17 @@ class CityForcastViewController: UIViewController {
             return city
         }()
         
-        let vm = CityForcastViewModel(currentCity)
+        let vm = CityDetailViewModel(currentCity)
         viewModel = vm
         
-        let cityForcastView = CityForcastView(viewModel: vm)
-        guard let vc = CityForcastHostingController(coder: coder, rootView: cityForcastView) else {
+        let cityDetailView = CityDetailView(viewModel: vm)
+        guard let vc = CityDetailHostingController(coder: coder, rootView: cityDetailView) else {
             return UIViewController()
         }
         
         return vc
     }
+    
 }
 
-class CityForcastHostingController: UIHostingController<CityForcastView> {}
+class CityDetailHostingController: UIHostingController<CityDetailView> {}

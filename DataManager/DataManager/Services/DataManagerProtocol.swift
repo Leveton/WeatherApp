@@ -21,7 +21,7 @@ extension DataManagerProtocol {
     }
     
     //Find 5 day / 3 hour forecast data
-    public func fetchFiveDayForcast(withCoordinates coordinates: (lat: Double, long: Double)) async -> Result<Data?, APIManagerError> {
-        return await apiManager.fetchFiveDayForcast(withCoordinates: coordinates)
+    public func fetchFiveDayForecast(withCoordinates coordinates: (lat: Double, long: Double)) async -> Result<Data?, APIManagerError> {
+        return await apiManager.fetchFiveDayForecast(withCoordinates: coordinates)
     }
 }

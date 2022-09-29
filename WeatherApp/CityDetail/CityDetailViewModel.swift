@@ -1,5 +1,5 @@
 //
-//  CityForcastViewModel.swift
+//  CityDetailViewModel.swift
 //  WeatherApp
 //
 //  Created by Michael Leveton on 9/25/22.
@@ -8,7 +8,7 @@
 import Foundation
 import DataManager
 
-class CityForcastViewModel: ObservableObject {
+class CityDetailViewModel: ObservableObject {
     @Published var city: City
     fileprivate lazy var dataManager: DataManagerProtocol = DataManager.sharedInstance
     
@@ -17,7 +17,7 @@ class CityForcastViewModel: ObservableObject {
     }
     
     public func fetchForecastWithCoordinates(_ coord: (lat: Double, long: Double)) async {
-        let result: Result<Data?, APIManagerError> = await dataManager.fetchFiveDayForcast(withCoordinates: coord)
+        let result: Result<Data?, APIManagerError> = await dataManager.fetchFiveDayForecast(withCoordinates: coord)
         switch result {
             case .success(let data):
                 guard let data = data else {return}

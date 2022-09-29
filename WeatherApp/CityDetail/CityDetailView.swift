@@ -1,5 +1,5 @@
 //
-//  CityForcastView.swift
+//  CityDetailView.swift
 //  WeatherApp
 //
 //  Created by Michael Leveton on 9/25/22.
@@ -8,8 +8,8 @@
 import UIKit
 import SwiftUI
 
-struct CityForcastView: View {
-    @ObservedObject var viewModel: CityForcastViewModel
+struct CityDetailView: View {
+    @ObservedObject var viewModel: CityDetailViewModel
     
     var body: some View {
         GeometryReader { proxy in
