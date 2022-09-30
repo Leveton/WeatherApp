@@ -15,6 +15,10 @@ class CityListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let backButton = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(didTapBackButton))
+        navigationItem.leftBarButtonItem = backButton
+        
+        
         setUpViewModel()
     }
     
@@ -42,6 +46,10 @@ class CityListViewController: UIViewController {
             self?.viewModel.fetchCities()
         }
     }
+    
+    @objc private func didTapBackButton() {
+        performSegue(withIdentifier: unwindCityListController, sender: self)
+    }
 }
 
 // MARK: - Navigation
@@ -56,7 +64,7 @@ extension CityListViewController {
         if segue.identifier == cityListControllerToCityDetailController, let vc = segue.destination as? CityDetailViewController {
             vc.viewModel.showCityList = false
             if let chosenCity = chosenCity {
-                vc.homeCity = chosenCity
+                vc.viewModel.city = chosenCity
             }
         }
     }

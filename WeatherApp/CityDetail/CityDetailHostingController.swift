@@ -11,8 +11,6 @@ import SwiftUI
 class CityDetailViewController: UIViewController {
     public var viewModel = CityDetailViewModel()
     
-    public var homeCity: City?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpViewModel()
@@ -45,7 +43,7 @@ class CityDetailViewController: UIViewController {
     private func refreshCity() async {
         //TODO: ask for location services to get current city at app launch
         let currentCity: City = {
-            if let homeCity = homeCity {
+            if let homeCity = viewModel.city {
                 return homeCity
             }
             
@@ -60,8 +58,6 @@ class CityDetailViewController: UIViewController {
         
         
         await viewModel.fetchSummaryWithName(currentCity.name)
-        
-        homeCity = viewModel.city
     }
     
     @IBSegueAction func CityDetailViewControllerToCityDetailView(_ coder: NSCoder) -> UIViewController? {
@@ -76,7 +72,17 @@ class CityDetailViewController: UIViewController {
 extension CityDetailViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == cityDetailControllerToCityListController, let vc = segue.destination as? CityListViewController {
-            vc.viewModel.homeCity = homeCity
+            if let cities = viewModel.cities {
+                vc.viewModel.cities = cities
+            } else {
+                vc.viewModel.homeCity = viewModel.city
+            }
+        }
+    }
+    
+    @IBAction func unwindCityList(segue: UIStoryboardSegue) {
+        if let vc = segue.source as? CityListViewController {
+            viewModel.cities = vc.viewModel.cities
         }
     }
 }

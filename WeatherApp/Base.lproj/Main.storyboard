@@ -52,11 +52,13 @@
                     <connections>
                         <segue destination="RQs-cg-bLo" kind="show" identifier="cityListControllerToCityAddController" id="4j5-jR-tNy"/>
                         <segue destination="Ijz-3u-qaG" kind="show" identifier="cityListControllerToCityDetailController" id="97U-fw-y0C"/>
+                        <segue destination="taW-CX-pgv" kind="unwind" identifier="unwindCityListController" unwindAction="unwindCityListWithSegue:" id="M9S-c0-aVw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p8m-kw-n5I" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="taW-CX-pgv" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="554" y="826"/>
+            <point key="canvasLocation" x="775" y="685"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="1ra-fn-PzJ">
