@@ -56,13 +56,13 @@ extension CitySearchViewController: UITableViewDelegate, UITableViewDataSource {
         googlePlacesManager.getCoordinatesForCity(city, completion: {[weak self] result in
             switch result {
             case .success(let coord):
-                print("coord::: \(coord)")
                 let simpleCoords: SimpleCoord = (lat: coord.latitude, long: coord.longitude)
                 
                 //Notify the City add controller that a new city was tapped
                 self?.didAddCityHandler?(simpleCoords)
                 
             case .failure(let error):
+                //TODO: surface error
                 print("get coord error::: \(error)")
             }
         })

@@ -34,11 +34,11 @@ struct CityListView: View {
                     }
                 }
                 Section {
-                    ForEach(cities, id: \.uuid) { entry in
-                        CityRowView(entry: entry)
+                    ForEach(cities, id: \.uuid) { city in
+                        CityRowView(city: city)
                             .onTapGesture {
-                                        print("Tapped cell")  // This triggers when you tap anywhere in the cell
-                                     }
+                                viewModel.didTapCityDetailHandler?(city)
+                            }
                     }
                     .onDelete(perform: self.deleteItems)
                     
@@ -46,7 +46,7 @@ struct CityListView: View {
             }
             .listStyle(GroupedListStyle())
             .refreshable {
-                print("Do your refresh work here")
+                
             }
             
         } else {
@@ -61,24 +61,24 @@ struct CityListView: View {
 }
 
 struct CityRowView: View {
-    let entry: City
+    let city: City
     
     var body: some View {
         HStack {
             VStack(alignment: .leading, spacing: 10) {
-                if let temperature = entry.temp, let fahrenheit = temperature.fahrenheit {
-                    Text(entry.name + " " + "\(Int(fahrenheit))º")
+                if let temperature = city.temp, let fahrenheit = temperature.fahrenheit {
+                    Text(city.name + " " + "\(Int(fahrenheit))º")
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .font(.custom("SanFranciscoRounded-Regular", size: 17))
                         .padding([.leading], 10)
                 } else {
-                    Text(entry.name)
+                    Text(city.name)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .font(.custom("SanFranciscoRounded-Regular", size: 17))
                         .padding([.leading], 10)
                 }
                 
-                let desc = entry.description ?? "Conditions currently unavailable"
+                let desc = city.description ?? "Conditions currently unavailable"
                 Text(desc)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .font(.custom("SanFranciscoRounded-Regular", size: 17))

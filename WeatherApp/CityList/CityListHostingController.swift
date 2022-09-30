@@ -10,12 +10,18 @@ import SwiftUI
 
 class CityListViewController: UIViewController {
     public let viewModel = CityListViewModel()
+    fileprivate var chosenCity: City?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         viewModel.didTapAddCityHandler = {[weak self] in
             self?.performSegue(withIdentifier: cityListControllerToCityAddController, sender: self)
+        }
+        
+        viewModel.didTapCityDetailHandler = {[weak self] city in
+            self?.chosenCity = city
+            self?.performSegue(withIdentifier: cityListControllerToCityDetailController, sender: self)
         }
     }
     
@@ -42,6 +48,12 @@ extension CityListViewController {
             
             vc.viewModel.didAddCityHandler = {[weak self] simpleCoord in
                 self?.viewModel.addCity(forCoordinates: simpleCoord)
+            }
+        }
+        if segue.identifier == cityListControllerToCityDetailController, let vc = segue.destination as? CityDetailViewController {
+            vc.viewModel?.showCityList = false
+            if let chosenCity = chosenCity {
+                vc.homeCity = chosenCity
             }
         }
     }

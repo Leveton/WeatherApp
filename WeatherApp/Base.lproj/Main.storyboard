@@ -13,7 +13,7 @@
             <objects>
                 <viewController id="RQs-cg-bLo" customClass="CityAddViewController" customModule="WeatherApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bE3-lH-nUQ">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="787"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="Hv4-Kw-wpk"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -29,11 +29,11 @@
             <objects>
                 <viewController storyboardIdentifier="CityListViewController" id="fBa-Mr-pNS" customClass="CityListViewController" customModule="WeatherApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0pi-Du-oyB">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="787"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Spc-VV-jjI">
-                                <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                                <rect key="frame" x="0.0" y="0.0" width="390" height="787"/>
                                 <connections>
                                     <segue destination="oPT-t0-IAa" kind="embed" destinationCreationSelector="CityListControllerToCityView:" id="J5O-P2-9jf"/>
                                 </connections>
@@ -51,11 +51,12 @@
                     <navigationItem key="navigationItem" id="79w-PE-rCx"/>
                     <connections>
                         <segue destination="RQs-cg-bLo" kind="show" identifier="cityListControllerToCityAddController" id="4j5-jR-tNy"/>
+                        <segue destination="Ijz-3u-qaG" kind="show" identifier="cityListControllerToCityDetailController" id="97U-fw-y0C"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p8m-kw-n5I" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="788" y="659"/>
+            <point key="canvasLocation" x="554" y="826"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="1ra-fn-PzJ">
@@ -78,11 +79,11 @@
             <objects>
                 <viewController storyboardIdentifier="CityDetailViewController" id="Ijz-3u-qaG" customClass="CityDetailViewController" customModule="WeatherApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eAR-4V-bWj">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="787"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T0f-m1-G2c">
-                                <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                                <rect key="frame" x="0.0" y="0.0" width="390" height="787"/>
                                 <connections>
                                     <segue destination="PbJ-AN-TcC" kind="embed" destinationCreationSelector="CityDetailViewControllerToCityDetailView:" id="IR2-Mt-Ua4"/>
                                 </connections>
@@ -123,6 +124,9 @@
             <point key="canvasLocation" x="1486" y="659"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="97U-fw-y0C"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

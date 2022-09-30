@@ -9,7 +9,7 @@ import UIKit
 import SwiftUI
 
 class CityDetailViewController: UIViewController {
-    fileprivate var viewModel: CityDetailViewModel? {
+    public var viewModel: CityDetailViewModel? {
         didSet {
             viewModel?.didTapCityListHandler = {[weak self] in
                 self?.performSegue(withIdentifier: cityDetailControllerToCityListController, sender: self)

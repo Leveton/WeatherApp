@@ -67,7 +67,7 @@ struct CityDetailView: View {
                 .frame(minHeight: proxy.size.height)
             }
             .refreshable {
-                print("Do your refresh work here")
+             
             }
         }
     }

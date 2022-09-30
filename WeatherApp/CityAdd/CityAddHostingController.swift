@@ -45,7 +45,6 @@ extension CityAddViewController: UISearchResultsUpdating {
         googlePlacesManager.findPlaces(query, completion: {result in
             switch result {
             case .success(let cities):
-                print("cities::: \(cities)")
                 DispatchQueue.main.async {
                     rvc.updateSearchResults(newCities: cities)
                 }
