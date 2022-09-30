@@ -14,6 +14,9 @@ class CityListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        viewModel.didTapAddCityHandler = {[weak self] in
+            self?.performSegue(withIdentifier: cityListControllerToCityAddController, sender: self)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -30,6 +33,18 @@ class CityListViewController: UIViewController {
         return vc
     }
     
+}
+
+// MARK: - Navigation
+extension CityListViewController {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == cityListControllerToCityAddController, let vc = segue.destination as? CityAddViewController {
+            
+            vc.viewModel.didAddCityHandler = {[weak self] simpleCoord in
+                self?.viewModel.addCity(forCoordinates: simpleCoord)
+            }
+        }
+    }
 }
 
 class CityListHostingController: UIHostingController<CityListView> {}

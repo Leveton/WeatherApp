@@ -26,7 +26,7 @@ struct CityListView: View {
                             .padding([.leading], 10)
                             .background(.white)
                         Button {
-                            print("Edit button was tapped")
+                            viewModel.didTapAddCityHandler?()
             
                         } label: {
                             Image(systemName: "plus")

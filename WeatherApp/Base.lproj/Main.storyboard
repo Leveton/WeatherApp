@@ -22,7 +22,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V74-uZ-7bx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2177" y="680"/>
+            <point key="canvasLocation" x="788" y="1363"/>
         </scene>
         <!--City List View Controller-->
         <scene sceneID="2PR-ga-FNB">
@@ -49,6 +49,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="79w-PE-rCx"/>
+                    <connections>
+                        <segue destination="RQs-cg-bLo" kind="show" identifier="cityListControllerToCityAddController" id="4j5-jR-tNy"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p8m-kw-n5I" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

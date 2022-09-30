@@ -7,12 +7,16 @@
 
 import Foundation
 import CoreLocation
+import DataManager
+
+//TODO: use this for all simple coords
+typealias SimpleCoord = (lat: Double, long: Double)
 
 protocol WeatherProtocol {
     var coord: CLLocationCoordinate2D? {get}
     
     //In case you don't want to import CoreLocation
-    var simpleCoord: (lat: Double, long: Double)? {get}
+    var simpleCoord: SimpleCoord? {get}
 }
 
 struct City {
@@ -69,6 +73,25 @@ struct City {
         }
     }
 
+    static func deserializeCity(withNetworkResult result: CityNetworkResult) -> City? {
+        switch result {
+            case .success(let data):
+                guard let data = data else {return nil}
+                
+                do {
+                    return try JSONDecoder().decode(City.self, from: data)
+                } catch {
+                    //TODO: Surface alert Firebase to the error
+                    print("Decoding error::: \(error.localizedDescription)")
+                    return nil
+                }
+                
+            //TODO: Surface alert Firebase to the error
+            case .failure(let error):
+                print("API error::: \(error.localizedDescription)")
+            return nil
+        }
+    }
 }
 
 extension City: Equatable {
@@ -120,11 +143,12 @@ extension City: WeatherProtocol {
         return CLLocationCoordinate2D(latitude: lat, longitude: lon)
     }
     
-    var simpleCoord: (lat: Double, long: Double)? {
+    var simpleCoord: SimpleCoord? {
         guard let lat = lat, let lon = lon else {return nil}
         return (lat: lat, long: lon)
     }
 }
+
 
 extension Float {
     var fahrenheit: Float {

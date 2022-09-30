@@ -20,65 +20,29 @@ class CityDetailViewModel: ObservableObject {
     }
     
     public func fetchForecastWithCoordinates(_ coord: (lat: Double, long: Double)) async {
-        let result: Result<Data?, APIManagerError> = await dataManager.fetchFiveDayForecast(withCoordinates: coord)
-        switch result {
-            case .success(let data):
-                guard let data = data else {return}
-                do {
-                    let city: City = try JSONDecoder().decode(City.self, from: data)
-                    DispatchQueue.main.async {
-                        self.city = city
-                    }
-                } catch {
-                    //TODO: Surface alert Firebase to the error
-                    print("Decoding error::: \(error.localizedDescription)")
-                }
-                
-            //TODO: Surface alert Firebase to the error
-            case .failure(let error):
-                print("API error::: \(error.localizedDescription)")
+        let result: CityNetworkResult = await dataManager.fetchFiveDayForecast(withCoordinates: coord)
+        if let freshCity = City.deserializeCity(withNetworkResult: result) {
+            DispatchQueue.main.async {
+                self.city = freshCity
+            }
         }
     }
     
-    public func fetchSummaryWithCoordinates(_ coord: (lat: Double, long: Double)) async {
-        let result: Result<Data?, APIManagerError> = await dataManager.fetchCurrentSummary(withCoordinates: coord)
-        switch result {
-            case .success(let data):
-                guard let data = data else {return}
-                do {
-                    let city: City = try JSONDecoder().decode(City.self, from: data)
-                    DispatchQueue.main.async {
-                        self.city = city
-                    }
-                } catch {
-                    //TODO: Surface alert Firebase to the error
-                    print("Decoding error::: \(error.localizedDescription)")
-                }
-                
-            //TODO: Surface alert Firebase to the error
-            case .failure(let error):
-                print("API error::: \(error.localizedDescription)")
+    public func fetchSummaryWithCoordinates(_ coord: SimpleCoord) async {
+        let result: CityNetworkResult = await dataManager.fetchCurrentSummary(withCoordinates: coord)
+        if let freshCity = City.deserializeCity(withNetworkResult: result) {
+            DispatchQueue.main.async {
+                self.city = freshCity
+            }
         }
     }
     
     public func fetchSummaryWithName(_ name: String) async {
-        let result: Result<Data?, APIManagerError> = await dataManager.fetchCurrentSummary(withName: name)
-        switch result {
-            case .success(let data):
-                guard let data = data else {return}
-                do {
-                    let city: City = try JSONDecoder().decode(City.self, from: data)
-                    DispatchQueue.main.async {
-                        self.city = city
-                    }
-                } catch {
-                    //TODO: Surface alert Firebase to the error
-                    print("Decoding error::: \(error.localizedDescription)")
-                }
-                
-            //TODO: Surface alert Firebase to the error
-            case .failure(let error):
-                print("API error::: \(error.localizedDescription)")
+        let result: CityNetworkResult = await dataManager.fetchCurrentSummary(withName: name)
+        if let freshCity = City.deserializeCity(withNetworkResult: result) {
+            DispatchQueue.main.async {
+                self.city = freshCity
+            }
         }
     }
 }

@@ -22,23 +22,8 @@ class HomeCityViewController: UIViewController {
     }
     
     func fetchCity() async -> City? {
-        let result: Result<Data?, APIManagerError> = await dataManager.fetchCurrentSummary(withName: "Miami", withCoordinates: nil)
-        switch result {
-        
-        case .success(let data):
-            guard let data = data else {return nil}
-            do {
-                let city: City? = try JSONDecoder().decode(City.self, from: data)
-                return city
-            } catch {
-                print("Decoding error::: \(error.localizedDescription)")
-                return nil
-            }
-            
-        case .failure(let error):
-            print("API error::: \(error.localizedDescription)")
-            return nil
-        }
+        let result: CityNetworkResult = await dataManager.fetchCurrentSummary(withName: "Miami", withCoordinates: nil)
+        return City.deserializeCity(withNetworkResult: result)
     }
     
     @IBSegueAction func HomeCityViewControllerToHomeCityView(_ coder: NSCoder) -> UIViewController? {

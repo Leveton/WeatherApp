@@ -11,6 +11,7 @@ import DataManager
 class CityListViewModel: ObservableObject {
     @Published public var cities: [City]?
     fileprivate lazy var dataManager: DataManagerProtocol = DataManager.sharedInstance
+    public var didTapAddCityHandler: (() -> Void)?
     
     public var homeCity: City? {
         didSet {
@@ -21,18 +22,49 @@ class CityListViewModel: ObservableObject {
         }
     }
     
-    public func fetchCities() {
+    public func addCity(forCoordinates coords: SimpleCoord) {
+        //prevent dups
+        for city in cities ?? [] {
+            guard let simpleCoord = city.simpleCoord else {continue}
+            if simpleCoord == coords {
+               return
+            }
+        }
+        
         Task {
-            if let updatedCities = await refreshCities() {
+            if let updatedCities = await addCityAsync(forCoordinates: coords) {
                 DispatchQueue.main.async {[weak self] in
-                    //redraw swift ui views
+                    //redraw SwiftUI
                     self?.cities = updatedCities
                 }
             }
         }
     }
     
-    private func refreshCities() async -> [City]? {
+    public func addCityAsync(forCoordinates coords: SimpleCoord) async -> [City]? {
+        let result: CityNetworkResult = await dataManager.fetchCurrentSummary(withCoordinates: coords)
+        if let freshCity = City.deserializeCity(withNetworkResult: result) {
+            var currentCities = cities ?? [City]()
+            currentCities.append(freshCity)
+            return currentCities
+            
+        }
+        
+        return nil
+    }
+    
+    public func fetchCities() {
+        Task {
+            if let updatedCities = await fetchCitiesAsync() {
+                DispatchQueue.main.async {[weak self] in
+                    //redraw swiftUI views
+                    self?.cities = updatedCities
+                }
+            }
+        }
+    }
+    
+    private func fetchCitiesAsync() async -> [City]? {
         guard let cities = cities else {return nil}
         let coordinates: [(lat: Double, long: Double)] = cities.compactMap({$0.simpleCoord})
         var updatedCities = [City]()

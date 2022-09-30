@@ -8,6 +8,9 @@
 import Foundation
 import CoreLocation
 
+//TODO: use this for all City API results
+public typealias CityNetworkResult = Result<Data?, APIManagerError>
+
 public protocol APIManagerProtocol {
     var openWeatherAPIKey: String {get}
 }
@@ -63,9 +66,8 @@ extension APIManagerProtocol {
     
     //TODO: Fallback to city name if there's no coordinate
     public func fetchCities(_ cityCoordinates: [(lat: Double, long: Double)]) async throws -> [Data] {
-        typealias CityResult = Result<Data?, APIManagerError>
         
-        return try await withThrowingTaskGroup(of: CityResult.self) { taskGroup in
+        return try await withThrowingTaskGroup(of: CityNetworkResult.self) { taskGroup in
             var dataArray =  [Data]()
             
             for coord in cityCoordinates {

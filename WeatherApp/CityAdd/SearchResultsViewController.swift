@@ -10,6 +10,7 @@ import UIKit
 class SearchResultsViewController: UIViewController {
     fileprivate var cities = [City]()
     fileprivate lazy var googlePlacesManager: GooglePlacesManagerProtocol = GooglePlacesManager.sharedInstance
+    public var didAddCityHandler: ((SimpleCoord) -> Void)?
     
     fileprivate let tableView: UITableView = {
         let tv = UITableView()
@@ -52,10 +53,15 @@ extension SearchResultsViewController: UITableViewDelegate, UITableViewDataSourc
         tableView.deselectRow(at: indexPath, animated: true)
         let city = cities[indexPath.row]
         
-        googlePlacesManager.getCoordinatesForCity(city, completion: {result in
+        googlePlacesManager.getCoordinatesForCity(city, completion: {[weak self] result in
             switch result {
             case .success(let coord):
                 print("coord::: \(coord)")
+                let simpleCoords: SimpleCoord = (lat: coord.latitude, long: coord.longitude)
+                
+                //Notify the City add controller that a new city was tapped
+                self?.didAddCityHandler?(simpleCoords)
+                
             case .failure(let error):
                 print("get coord error::: \(error)")
             }

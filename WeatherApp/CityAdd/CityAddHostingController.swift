@@ -12,15 +12,25 @@ import MapKit
 
 class CityAddViewController: UIViewController {
     
-    let viewModel = CityAddViewModel()
+    public let viewModel = CityAddViewModel()
     fileprivate lazy var googlePlacesManager: GooglePlacesManagerProtocol = GooglePlacesManager.sharedInstance
-    let svc = UISearchController(searchResultsController: SearchResultsViewController())
+    fileprivate let rvc = SearchResultsViewController()
+    fileprivate let svc = UISearchController(searchResultsController: SearchResultsViewController())
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = NSLocalizedString("Find City", comment: "FIND_CITY")
+        setUpSearchController()
+    }
+    
+    fileprivate func setUpSearchController() {
         svc.searchResultsUpdater = self
         navigationItem.searchController = svc
+        if let rvc = svc.searchResultsController as? SearchResultsViewController {
+            rvc.didAddCityHandler = {[weak self] simpleCoord in
+                self?.viewModel.didAddCityHandler?(simpleCoord)
+            }
+        }
     }
 }
 
