@@ -13,44 +13,61 @@ import MapKit
 class CityAddViewController: UIViewController {
     
     public let viewModel = CityAddViewModel()
-    fileprivate lazy var googlePlacesManager: GooglePlacesManagerProtocol = GooglePlacesManager.sharedInstance
-    fileprivate let rvc = CitySearchViewController()
-    fileprivate let svc = UISearchController(searchResultsController: CitySearchViewController())
+    @IBOutlet private weak var textField: UITextField?
+    @IBOutlet private weak var tableView: UITableView?
+    public var didAddCityHandler: ((SimpleCoord) -> Void)?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = NSLocalizedString("Find City", comment: "FIND_CITY")
-        setUpSearchController()
+        
+        textField?.delegate = self
+        tableView?.dataSource = self
+        tableView?.delegate = self
+        setUpViewModel()
     }
     
-    fileprivate func setUpSearchController() {
-        svc.searchResultsUpdater = self
-        navigationItem.searchController = svc
-        if let rvc = svc.searchResultsController as? CitySearchViewController {
-            rvc.didAddCityHandler = {[weak self] simpleCoord in
-                self?.viewModel.didAddCityHandler?(simpleCoord)
-            }
+    fileprivate func setUpViewModel() {
+        
+        viewModel.didAddCityHandler = {[weak self] simpleCoord in
+            self?.dismiss(animated: true, completion: {
+                self?.didAddCityHandler?(simpleCoord)
+            })
         }
+        
+        viewModel.citiesFoundHandler = {[weak self] in
+            self?.tableView?.reloadData()
+        }
+
     }
 }
 
-extension CityAddViewController: UISearchResultsUpdating {
+extension CityAddViewController: UITextFieldDelegate {
     
-    func updateSearchResults(for searchController: UISearchController) {
-        guard let query = searchController.searchBar.text,
-              !query.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty,
-              let rvc = searchController.searchResultsController as? CitySearchViewController
-        else {return}
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        guard let query = textField.text,
+              !query.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+        else {return true}
         
-        googlePlacesManager.findPlaces(query, completion: {result in
-            switch result {
-            case .success(let cities):
-                DispatchQueue.main.async {
-                    rvc.updateSearchResults(newCities: cities)
-                }
-            case .failure(let error):
-                print("places error::: \(error.localizedDescription)")
-            }
-        })
+        viewModel.findPlaces(withQuery: query)
+        return true
+    }
+}
+
+extension CityAddViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return viewModel.cities.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CityAddCell", for: indexPath)
+        cell.textLabel?.text = viewModel.cities[indexPath.row].name
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let city = viewModel.cities[indexPath.row]
+        viewModel.getCoords(forCity: city)
     }
 }

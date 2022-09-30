@@ -17,8 +17,6 @@ class CityListViewController: UIViewController {
         
         let backButton = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(didTapBackButton))
         navigationItem.leftBarButtonItem = backButton
-        
-        
         setUpViewModel()
     }
     
@@ -57,7 +55,7 @@ extension CityListViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == cityListControllerToCityAddController, let vc = segue.destination as? CityAddViewController {
             
-            vc.viewModel.didAddCityHandler = {[weak self] simpleCoord in
+            vc.didAddCityHandler = {[weak self] simpleCoord in
                 self?.viewModel.addCity(forCoordinates: simpleCoord)
             }
         }

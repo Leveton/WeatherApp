@@ -15,14 +15,48 @@
                     <view key="view" contentMode="scaleToFill" id="bE3-lH-nUQ">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="787"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search cities" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="30h-Fd-t9b">
+                                <rect key="frame" x="16" y="88" width="358" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" smartDashesType="no" smartInsertDeleteType="no"/>
+                            </textField>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="sx5-8P-cRq">
+                                <rect key="frame" x="16" y="130" width="358" height="627"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CityAddCell" id="Be9-Ey-SXV">
+                                        <rect key="frame" x="0.0" y="50" width="358" height="43.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Be9-Ey-SXV" id="pnN-NA-C0g">
+                                            <rect key="frame" x="0.0" y="0.0" width="358" height="43.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="Hv4-Kw-wpk"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="sx5-8P-cRq" firstAttribute="top" secondItem="30h-Fd-t9b" secondAttribute="bottom" constant="8" id="5Vd-UK-5Dk"/>
+                            <constraint firstItem="Hv4-Kw-wpk" firstAttribute="trailing" secondItem="sx5-8P-cRq" secondAttribute="trailing" constant="16" id="9rT-Cm-2Jn"/>
+                            <constraint firstItem="30h-Fd-t9b" firstAttribute="leading" secondItem="Hv4-Kw-wpk" secondAttribute="leading" constant="16" id="SMO-zC-W38"/>
+                            <constraint firstItem="Hv4-Kw-wpk" firstAttribute="bottom" secondItem="sx5-8P-cRq" secondAttribute="bottom" constant="30" id="h92-E7-obO"/>
+                            <constraint firstItem="30h-Fd-t9b" firstAttribute="top" secondItem="Hv4-Kw-wpk" secondAttribute="top" constant="41" id="riK-Uv-lU0"/>
+                            <constraint firstItem="Hv4-Kw-wpk" firstAttribute="trailing" secondItem="30h-Fd-t9b" secondAttribute="trailing" constant="16" id="uJa-6D-Pzh"/>
+                            <constraint firstItem="sx5-8P-cRq" firstAttribute="leading" secondItem="Hv4-Kw-wpk" secondAttribute="leading" constant="16" id="vok-QA-PuS"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="gaM-pu-lZL"/>
+                    <connections>
+                        <outlet property="tableView" destination="sx5-8P-cRq" id="cNH-lk-vIQ"/>
+                        <outlet property="textField" destination="30h-Fd-t9b" id="doG-of-uNX"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V74-uZ-7bx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="788" y="1363"/>
+            <point key="canvasLocation" x="788" y="1365"/>
         </scene>
         <!--City List View Controller-->
         <scene sceneID="2PR-ga-FNB">
@@ -50,7 +84,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="79w-PE-rCx"/>
                     <connections>
-                        <segue destination="RQs-cg-bLo" kind="show" identifier="cityListControllerToCityAddController" id="4j5-jR-tNy"/>
+                        <segue destination="RQs-cg-bLo" kind="presentation" identifier="cityListControllerToCityAddController" id="4j5-jR-tNy"/>
                         <segue destination="Ijz-3u-qaG" kind="show" identifier="cityListControllerToCityDetailController" id="97U-fw-y0C"/>
                         <segue destination="taW-CX-pgv" kind="unwind" identifier="unwindCityListController" unwindAction="unwindCityListWithSegue:" id="M9S-c0-aVw"/>
                     </connections>
