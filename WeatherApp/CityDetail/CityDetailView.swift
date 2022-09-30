@@ -16,18 +16,19 @@ struct CityDetailView: View {
             ScrollView {
                 VStack {
                     
-                    Button {
-                        print("Edit button was tapped")
-                        
-                    } label: {
-                        Image(systemName: "list.bullet")
-                            .font(.system(size: 28, weight: .bold))
+                    if viewModel.showCityList {
+                        Button {
+                            viewModel.didTapCityListHandler?()
+                            
+                        } label: {
+                            Image(systemName: "list.bullet")
+                                .font(.system(size: 28, weight: .bold))
+                        }
+                        .frame(maxWidth: .infinity, alignment: .trailing)
+                        .foregroundColor(Color(red: 51.0/255.0, green: 51.0/255.0, blue: 255.0/255.0))
+                        .padding([.trailing, .leading,], 10)
+                        .padding([.bottom,], 5)
                     }
-                    .frame(maxWidth: .infinity, alignment: .trailing)
-                    .foregroundColor(Color(red: 51.0/255.0, green: 51.0/255.0, blue: 255.0/255.0))
-                    .padding([.trailing, .leading,], 10)
-                    .padding([.bottom,], 5)
-                    
                     
                     Text(viewModel.city.name)
                         .frame(maxWidth: .infinity, alignment: .leading)

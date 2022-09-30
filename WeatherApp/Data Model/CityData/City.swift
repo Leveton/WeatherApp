@@ -10,6 +10,9 @@ import CoreLocation
 
 protocol WeatherProtocol {
     var coord: CLLocationCoordinate2D? {get}
+    
+    //In case you don't want to import CoreLocation
+    var simpleCoord: (lat: Double, long: Double)? {get}
 }
 
 struct City {
@@ -113,8 +116,13 @@ extension City: Codable {
 //MARK: methods and computed properties
 extension City: WeatherProtocol {
     var coord: CLLocationCoordinate2D? {
-        guard let lon = lon, let lat = lat else {return nil}
+        guard let lat = lat, let lon = lon else {return nil}
         return CLLocationCoordinate2D(latitude: lat, longitude: lon)
+    }
+    
+    var simpleCoord: (lat: Double, long: Double)? {
+        guard let lat = lat, let lon = lon else {return nil}
+        return (lat: lat, long: lon)
     }
 }
 

@@ -10,9 +10,6 @@ import SwiftUI
 import DataManager
 import MapKit
 
-class CityAddHostingController: UIHostingController<HomeCityView> {
-}
-
 class CityAddViewController: UIViewController {
     
     let viewModel = CityAddViewModel()
@@ -48,3 +45,5 @@ extension CityAddViewController: UISearchResultsUpdating {
         })
     }
 }
+
+class CityAddHostingController: UIHostingController<HomeCityView> {}

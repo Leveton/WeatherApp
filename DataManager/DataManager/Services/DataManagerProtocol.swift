@@ -24,4 +24,9 @@ extension DataManagerProtocol {
     public func fetchFiveDayForecast(withCoordinates coordinates: (lat: Double, long: Double)) async -> Result<Data?, APIManagerError> {
         return await apiManager.fetchFiveDayForecast(withCoordinates: coordinates)
     }
+    
+    //TODO: Fallback to city name if there's no coordinate
+    public func fetchCities(_ cityCoordinates: [(lat: Double, long: Double)]) async throws -> [Data] {
+        return try await apiManager.fetchCities(cityCoordinates)
+    }
 }

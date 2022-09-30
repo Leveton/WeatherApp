@@ -22,12 +22,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V74-uZ-7bx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1518" y="-650"/>
+            <point key="canvasLocation" x="2177" y="680"/>
         </scene>
-        <!--Home City View Controller-->
+        <!--City List View Controller-->
         <scene sceneID="2PR-ga-FNB">
             <objects>
-                <viewController storyboardIdentifier="HomeCityViewController" id="fBa-Mr-pNS" customClass="HomeCityViewController" customModule="WeatherApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CityListViewController" id="fBa-Mr-pNS" customClass="CityListViewController" customModule="WeatherApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0pi-Du-oyB">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -35,7 +35,7 @@
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Spc-VV-jjI">
                                 <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                                 <connections>
-                                    <segue destination="oPT-t0-IAa" kind="embed" destinationCreationSelector="HomeCityViewControllerToHomeCityView:" id="gPa-fA-erd"/>
+                                    <segue destination="oPT-t0-IAa" kind="embed" destinationCreationSelector="CityListControllerToCityView:" id="J5O-P2-9jf"/>
                                 </connections>
                             </containerView>
                         </subviews>
@@ -48,10 +48,11 @@
                             <constraint firstAttribute="bottom" secondItem="Spc-VV-jjI" secondAttribute="bottom" id="q69-TR-v5n"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="79w-PE-rCx"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p8m-kw-n5I" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1485" y="649"/>
+            <point key="canvasLocation" x="789" y="680"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="1ra-fn-PzJ">
@@ -94,6 +95,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="sgt-Eu-qnu"/>
+                    <connections>
+                        <segue destination="fBa-Mr-pNS" kind="show" identifier="cityDetailControllerToCityListController" id="CE6-Qg-Azf"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cbN-Ne-uIG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -113,7 +117,7 @@
                 <hostingController id="oPT-t0-IAa" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Pf-eO-twG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2163" y="641"/>
+            <point key="canvasLocation" x="1486" y="659"/>
         </scene>
     </scenes>
     <resources>

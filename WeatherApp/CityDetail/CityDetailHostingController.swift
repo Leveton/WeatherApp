@@ -9,8 +9,15 @@ import UIKit
 import SwiftUI
 
 class CityDetailViewController: UIViewController {
-    var viewModel: CityDetailViewModel?
-    var homeCity: City?
+    fileprivate var viewModel: CityDetailViewModel? {
+        didSet {
+            viewModel?.didTapCityListHandler = {[weak self] in
+                self?.performSegue(withIdentifier: cityDetailControllerToCityListController, sender: self)
+            }
+        }
+    }
+    
+    public var homeCity: City?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,7 +27,6 @@ class CityDetailViewController: UIViewController {
         super.viewWillAppear(animated)
         Task {
             await refreshCity()
-            
         }
     }
     
@@ -64,6 +70,15 @@ class CityDetailViewController: UIViewController {
         return vc
     }
     
+}
+
+// MARK: - Navigation
+extension CityDetailViewController {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == cityDetailControllerToCityListController, let vc = segue.destination as? CityListViewController {
+            vc.viewModel.homeCity = homeCity
+        }
+    }
 }
 
 class CityDetailHostingController: UIHostingController<CityDetailView> {}

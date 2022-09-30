@@ -18,7 +18,6 @@ class HomeCityViewController: UIViewController {
         super.viewDidLoad()
         Task {
             self.city = await fetchCity()
-            
         }
     }
     

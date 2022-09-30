@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreLocation
 
 public protocol APIManagerProtocol {
     var openWeatherAPIKey: String {get}
@@ -59,4 +60,31 @@ extension APIManagerProtocol {
             return .failure(.failedRequest(error: error))
         }
     }
+    
+    //TODO: Fallback to city name if there's no coordinate
+    public func fetchCities(_ cityCoordinates: [(lat: Double, long: Double)]) async throws -> [Data] {
+        typealias CityResult = Result<Data?, APIManagerError>
+        
+        return try await withThrowingTaskGroup(of: CityResult.self) { taskGroup in
+            var dataArray =  [Data]()
+            
+            for coord in cityCoordinates {
+              taskGroup.addTask {
+                  return await self.fetchCurrentSummary(withCoordinates: (lat: coord.lat, long: coord.long))
+              }
+            }
+            
+            for try await cityResult in taskGroup {
+                switch cityResult {
+                case .success(let data):
+                    if let data = data {
+                        dataArray.append(data)
+                    }
+                case .failure(let error):
+                    print("fetch cities error::: \(error)")
+                }
+            }
+            return dataArray
+          }
+        }
 }

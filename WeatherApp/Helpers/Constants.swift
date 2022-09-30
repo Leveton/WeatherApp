@@ -7,6 +7,9 @@
 
 import Foundation
 
+//MARK: segues
+let cityDetailControllerToCityListController = "cityDetailControllerToCityListController"
+
 //TODO: This should be stored in the user's KeyChain and rotated via the server
 let googlePlacesAPIKey = "AIzaSyBCgO7OTTIn-J4cgnCsaCqthgbbz4ELVt4"
 

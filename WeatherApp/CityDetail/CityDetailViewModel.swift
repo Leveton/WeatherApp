@@ -9,8 +9,11 @@ import Foundation
 import DataManager
 
 class CityDetailViewModel: ObservableObject {
-    @Published var city: City
+    @Published public var city: City
+    @Published public var showCityList = true
+    
     fileprivate lazy var dataManager: DataManagerProtocol = DataManager.sharedInstance
+    public var didTapCityListHandler: (() -> Void)?
     
     init(_ city: City) {
         self.city = city
