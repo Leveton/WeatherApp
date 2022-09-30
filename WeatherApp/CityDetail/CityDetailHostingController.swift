@@ -61,13 +61,8 @@ class CityDetailViewController: UIViewController {
         
         let vm = CityDetailViewModel(currentCity)
         viewModel = vm
-        
         let cityDetailView = CityDetailView(viewModel: vm)
-        guard let vc = CityDetailHostingController(coder: coder, rootView: cityDetailView) else {
-            return UIViewController()
-        }
-        
-        return vc
+        return  CityDetailHostingController(coder: coder, rootView: cityDetailView)
     }
     
 }

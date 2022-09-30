@@ -32,11 +32,7 @@ class CityListViewController: UIViewController {
     
     @IBSegueAction func CityListControllerToCityView(_ coder: NSCoder) -> UIViewController? {
         let cityListView = CityListView(viewModel: viewModel)
-        guard let vc = CityListHostingController(coder: coder, rootView: cityListView) else {
-            return UIViewController()
-        }
-        
-        return vc
+        return CityListHostingController(coder: coder, rootView: cityListView)
     }
     
 }

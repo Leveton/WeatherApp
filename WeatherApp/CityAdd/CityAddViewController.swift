@@ -1,5 +1,5 @@
 //
-//  CityAddHostingController.swift
+//  CityAddViewController.swift
 //  WeatherApp
 //
 //  Created by Michael Leveton on 9/28/22.
@@ -54,5 +54,3 @@ extension CityAddViewController: UISearchResultsUpdating {
         })
     }
 }
-
-class CityAddHostingController: UIHostingController<HomeCityView> {}
