@@ -7,6 +7,7 @@
 
 import Foundation
 import DataManager
+import SwiftUI
 
 class CityListViewModel: ObservableObject {
     @Published public var cities: [City]?
@@ -19,7 +20,9 @@ class CityListViewModel: ObservableObject {
         didSet {
             //If the data source hasn't been initialized, at least show the home city
             if let homeCity = homeCity, cities == nil {
-                cities = [homeCity]
+                withAnimation {
+                    cities = [homeCity]
+                }
             }
         }
     }
@@ -37,7 +40,9 @@ class CityListViewModel: ObservableObject {
             if let updatedCities = await addCityAsync(forCoordinates: coords) {
                 DispatchQueue.main.async {[weak self] in
                     //redraw SwiftUI
-                    self?.cities = updatedCities
+                    withAnimation {
+                        self?.cities = updatedCities
+                    }
                 }
             }
         }

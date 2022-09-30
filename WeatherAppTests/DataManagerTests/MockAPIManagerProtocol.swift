@@ -6,9 +6,11 @@
 //
 
 import Foundation
-import DataManager
+@testable import DataManager
 
-class MockAPIManagerProtocol: APIManagerProtocol {
+class MockAPIManager: APIManagerProtocol {
+    var openWeatherAPIKey = "MOCK_API_KEY"
+    
     var called_endpointURL = false
     var return_endpointURL: URL? = nil
     

@@ -1,15 +1,17 @@
 //
-//  APIManagerProtocol_Tests.swift
-//  DataManagerTests
+//  CityListViewModel_tests.swift
+//  WeatherAppTests
 //
-//  Created by Michael Leveton on 9/25/22.
+//  Created by Michael Leveton on 9/30/22.
 //
 
 import Foundation
 import XCTest
-import DataManager
+@testable import WeatherApp
+@testable import DataManager
 
-class APIManagerProtocol_Tests: XCTestCase {
+class CityListViewModel_Tests: XCTestCase {
+    var objectToTest = CityListViewModel()
     
     override func setUpWithError() throws {
         super.setUp()
@@ -21,12 +23,10 @@ class APIManagerProtocol_Tests: XCTestCase {
         super.tearDown()
     }
     
-    func test_getRequest_forService() {
-        guard let url = URL(string: "http://www.example.com") else {
-            XCTFail("URL invalid")
-            return
-        }
+    func test_addCity() {
+        objectToTest.homeCity = City(name: "Miami")
         
-        XCTAssertEqual(url.absoluteString, "http://www.example.com")
+        XCTAssertEqual(objectToTest.homeCity?.name, "Miami")
+        XCTAssertEqual(objectToTest.cities?.first?.name, "Miami")
     }
 }

@@ -1,5 +1,5 @@
 //
-//  DataManagerProtocol_Tests.swift
+//  APIManagerProtocol_Tests.swift
 //  DataManagerTests
 //
 //  Created by Michael Leveton on 9/25/22.
@@ -7,9 +7,9 @@
 
 import Foundation
 import XCTest
-import DataManager
+@testable import DataManager
 
-class DataManagerProtocol_Tests: XCTestCase {
+class APIManagerProtocol_Tests: XCTestCase {
     
     override func setUpWithError() throws {
         super.setUp()
@@ -21,16 +21,7 @@ class DataManagerProtocol_Tests: XCTestCase {
         super.tearDown()
     }
     
-    func test_fetchCurrentSummary() {
-        guard let url = URL(string: "http://www.example.com") else {
-            XCTFail("URL invalid")
-            return
-        }
-        
-        XCTAssertEqual(url.absoluteString, "http://www.example.com")
-    }
-    
-    func test_fetchCityList() {
+    func test_getRequest_forService() {
         guard let url = URL(string: "http://www.example.com") else {
             XCTFail("URL invalid")
             return

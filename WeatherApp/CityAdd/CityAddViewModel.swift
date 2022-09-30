@@ -7,8 +7,8 @@
 
 import Foundation
 
-class CityAddViewModel: ObservableObject {
-    fileprivate lazy var googlePlacesManager: GooglePlacesManagerProtocol = GooglePlacesManager.sharedInstance
+class CityAddViewModel {
+    public lazy var googlePlacesManager: GooglePlacesManagerProtocol = GooglePlacesManager.sharedInstance
     public var didAddCityHandler: ((SimpleCoord) -> Void)?
     public var citiesFoundHandler: (() -> Void)?
     public var cities = [City]()

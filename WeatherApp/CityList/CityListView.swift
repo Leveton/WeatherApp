@@ -29,16 +29,19 @@ struct CityListView: View {
             
                         } label: {
                             Image(systemName: "plus")
+                                .foregroundColor(Color(red: 51.0/255.0, green: 51.0/255.0, blue: 255.0/255.0))
                         }
                         .padding([.trailing], 10)
                     }
                 }
                 Section {
                     ForEach(cities, id: \.uuid) { city in
-                        CityRowView(city: city)
-                            .onTapGesture {
-                                viewModel.didTapCityDetailHandler?(city)
-                            }
+                        Button {
+                            viewModel.didTapCityDetailHandler?(city)
+            
+                        } label: {
+                            CityRowView(city: city)
+                        }
                     }
                     .onDelete(perform: self.deleteItems)
                     
@@ -70,11 +73,13 @@ struct CityRowView: View {
                     Text(city.name + " " + "\(Int(fahrenheit))º")
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .font(.custom("SanFranciscoRounded-Regular", size: 17))
+                        .foregroundColor(Color(red: 51.0/255.0, green: 51.0/255.0, blue: 255.0/255.0))
                         .padding([.leading], 10)
                 } else {
                     Text(city.name)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .font(.custom("SanFranciscoRounded-Regular", size: 17))
+                        .foregroundColor(Color(red: 51.0/255.0, green: 51.0/255.0, blue: 255.0/255.0))
                         .padding([.leading], 10)
                 }
                 
@@ -82,10 +87,12 @@ struct CityRowView: View {
                 Text(desc)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .font(.custom("SanFranciscoRounded-Regular", size: 17))
+                    .foregroundColor(Color(red: 51.0/255.0, green: 51.0/255.0, blue: 255.0/255.0))
                     .padding([.leading], 10)
             }
             Image(systemName: "chevron.forward")
                 .padding([.trailing], 10)
+                .foregroundColor(Color(red: 51.0/255.0, green: 51.0/255.0, blue: 255.0/255.0))
         }
     }
 }

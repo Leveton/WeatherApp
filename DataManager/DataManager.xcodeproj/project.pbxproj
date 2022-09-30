@@ -7,38 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D181546728E0BF4F00F0C652 /* DataManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D181545E28E0BF4F00F0C652 /* DataManager.framework */; };
-		D181546C28E0BF4F00F0C652 /* DataManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D181546B28E0BF4F00F0C652 /* DataManagerTests.swift */; };
 		D181546D28E0BF4F00F0C652 /* DataManager.h in Headers */ = {isa = PBXBuildFile; fileRef = D181546128E0BF4F00F0C652 /* DataManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D1E40DB728E108F4008FC98A /* DataManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E40DB628E108F4008FC98A /* DataManagerProtocol.swift */; };
 		D1E40DB928E10959008FC98A /* APIManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E40DB828E10959008FC98A /* APIManagerProtocol.swift */; };
-		D1E40DC228E11124008FC98A /* APIManagerProtocol_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E40DC128E11124008FC98A /* APIManagerProtocol_Tests.swift */; };
-		D1E40DC428E11140008FC98A /* DataManagerProtocol_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E40DC328E11140008FC98A /* DataManagerProtocol_Tests.swift */; };
-		D1E40DC728E11174008FC98A /* MockDataManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E40DC628E11174008FC98A /* MockDataManagerProtocol.swift */; };
-		D1E40DCA28E11199008FC98A /* MockAPIManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E40DC928E11199008FC98A /* MockAPIManagerProtocol.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		D181546828E0BF4F00F0C652 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D181545528E0BF4F00F0C652 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D181545D28E0BF4F00F0C652;
-			remoteInfo = DataManager;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		D181545E28E0BF4F00F0C652 /* DataManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DataManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D181546128E0BF4F00F0C652 /* DataManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataManager.h; sourceTree = "<group>"; };
-		D181546628E0BF4F00F0C652 /* DataManagerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DataManagerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		D181546B28E0BF4F00F0C652 /* DataManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManagerTests.swift; sourceTree = "<group>"; };
 		D1E40DB628E108F4008FC98A /* DataManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManagerProtocol.swift; sourceTree = "<group>"; };
 		D1E40DB828E10959008FC98A /* APIManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManagerProtocol.swift; sourceTree = "<group>"; };
-		D1E40DC128E11124008FC98A /* APIManagerProtocol_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManagerProtocol_Tests.swift; sourceTree = "<group>"; };
-		D1E40DC328E11140008FC98A /* DataManagerProtocol_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManagerProtocol_Tests.swift; sourceTree = "<group>"; };
-		D1E40DC628E11174008FC98A /* MockDataManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDataManagerProtocol.swift; sourceTree = "<group>"; };
-		D1E40DC928E11199008FC98A /* MockAPIManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAPIManagerProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,14 +24,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D181546328E0BF4F00F0C652 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D181546728E0BF4F00F0C652 /* DataManager.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -73,7 +43,6 @@
 			isa = PBXGroup;
 			children = (
 				D181546028E0BF4F00F0C652 /* DataManager */,
-				D181546A28E0BF4F00F0C652 /* DataManagerTests */,
 				D181545F28E0BF4F00F0C652 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -82,7 +51,6 @@
 			isa = PBXGroup;
 			children = (
 				D181545E28E0BF4F00F0C652 /* DataManager.framework */,
-				D181546628E0BF4F00F0C652 /* DataManagerTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -94,26 +62,6 @@
 				D181546128E0BF4F00F0C652 /* DataManager.h */,
 			);
 			path = DataManager;
-			sourceTree = "<group>";
-		};
-		D181546A28E0BF4F00F0C652 /* DataManagerTests */ = {
-			isa = PBXGroup;
-			children = (
-				D1E40DC528E11152008FC98A /* Services */,
-				D181546B28E0BF4F00F0C652 /* DataManagerTests.swift */,
-				D1E40DC628E11174008FC98A /* MockDataManagerProtocol.swift */,
-				D1E40DC928E11199008FC98A /* MockAPIManagerProtocol.swift */,
-			);
-			path = DataManagerTests;
-			sourceTree = "<group>";
-		};
-		D1E40DC528E11152008FC98A /* Services */ = {
-			isa = PBXGroup;
-			children = (
-				D1E40DC128E11124008FC98A /* APIManagerProtocol_Tests.swift */,
-				D1E40DC328E11140008FC98A /* DataManagerProtocol_Tests.swift */,
-			);
-			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -148,24 +96,6 @@
 			productReference = D181545E28E0BF4F00F0C652 /* DataManager.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		D181546528E0BF4F00F0C652 /* DataManagerTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = D181547328E0BF4F00F0C652 /* Build configuration list for PBXNativeTarget "DataManagerTests" */;
-			buildPhases = (
-				D181546228E0BF4F00F0C652 /* Sources */,
-				D181546328E0BF4F00F0C652 /* Frameworks */,
-				D181546428E0BF4F00F0C652 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				D181546928E0BF4F00F0C652 /* PBXTargetDependency */,
-			);
-			name = DataManagerTests;
-			productName = DataManagerTests;
-			productReference = D181546628E0BF4F00F0C652 /* DataManagerTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -179,9 +109,6 @@
 					D181545D28E0BF4F00F0C652 = {
 						CreatedOnToolsVersion = 14.0;
 						LastSwiftMigration = 1400;
-					};
-					D181546528E0BF4F00F0C652 = {
-						CreatedOnToolsVersion = 14.0;
 					};
 				};
 			};
@@ -199,20 +126,12 @@
 			projectRoot = "";
 			targets = (
 				D181545D28E0BF4F00F0C652 /* DataManager */,
-				D181546528E0BF4F00F0C652 /* DataManagerTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		D181545C28E0BF4F00F0C652 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D181546428E0BF4F00F0C652 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -231,27 +150,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D181546228E0BF4F00F0C652 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D1E40DC228E11124008FC98A /* APIManagerProtocol_Tests.swift in Sources */,
-				D1E40DC728E11174008FC98A /* MockDataManagerProtocol.swift in Sources */,
-				D1E40DC428E11140008FC98A /* DataManagerProtocol_Tests.swift in Sources */,
-				D181546C28E0BF4F00F0C652 /* DataManagerTests.swift in Sources */,
-				D1E40DCA28E11199008FC98A /* MockAPIManagerProtocol.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		D181546928E0BF4F00F0C652 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = D181545D28E0BF4F00F0C652 /* DataManager */;
-			targetProxy = D181546828E0BF4F00F0C652 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		D181546E28E0BF4F00F0C652 /* Debug */ = {
@@ -437,41 +336,6 @@
 			};
 			name = Release;
 		};
-		D181547428E0BF4F00F0C652 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 2SPMBW99YZ;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mleveton.DataManagerTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		D181547528E0BF4F00F0C652 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 2SPMBW99YZ;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				ONLY_ACTIVE_ARCH = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mleveton.DataManagerTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -489,15 +353,6 @@
 			buildConfigurations = (
 				D181547128E0BF4F00F0C652 /* Debug */,
 				D181547228E0BF4F00F0C652 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		D181547328E0BF4F00F0C652 /* Build configuration list for PBXNativeTarget "DataManagerTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D181547428E0BF4F00F0C652 /* Debug */,
-				D181547528E0BF4F00F0C652 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

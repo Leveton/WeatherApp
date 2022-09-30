@@ -7,6 +7,7 @@
 
 import Foundation
 import DataManager
+import SwiftUI
 
 class CityDetailViewModel: ObservableObject {
     @Published public var city: City?
@@ -22,7 +23,9 @@ class CityDetailViewModel: ObservableObject {
         let result: CityNetworkResult = await dataManager.fetchFiveDayForecast(withCoordinates: coord)
         if let freshCity = City.deserializeCity(withNetworkResult: result) {
             DispatchQueue.main.async {
-                self.city = freshCity
+                withAnimation {
+                    self.city = freshCity
+                }
             }
         }
     }
@@ -31,7 +34,9 @@ class CityDetailViewModel: ObservableObject {
         let result: CityNetworkResult = await dataManager.fetchCurrentSummary(withCoordinates: coord)
         if let freshCity = City.deserializeCity(withNetworkResult: result) {
             DispatchQueue.main.async {
-                self.city = freshCity
+                withAnimation {
+                    self.city = freshCity
+                }
             }
         }
     }
@@ -40,7 +45,9 @@ class CityDetailViewModel: ObservableObject {
         let result: CityNetworkResult = await dataManager.fetchCurrentSummary(withName: name)
         if let freshCity = City.deserializeCity(withNetworkResult: result) {
             DispatchQueue.main.async {
-                self.city = freshCity
+                withAnimation {
+                    self.city = freshCity
+                }
             }
         }
     }
