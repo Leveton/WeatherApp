@@ -42,6 +42,7 @@ class CityDetailViewController: UIViewController {
     
     private func refreshCity() async {
         //TODO: ask for location services to get current city at app launch
+        //For now just default to Manhattan.
         let currentCity: City = {
             if let homeCity = viewModel.city {
                 return homeCity

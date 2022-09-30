@@ -49,7 +49,7 @@ class CityListViewModel: ObservableObject {
     }
     
     public func addCityAsync(forCoordinates coords: SimpleCoord) async -> [City]? {
-        let result: CityNetworkResult = await dataManager.fetchCurrentSummary(withCoordinates: coords)
+        let result: CityNetworkResult = await dataManager.fetchCurrentSummary(withName: nil, withCoordinates: coords)
         if let freshCity = City.deserializeCity(withNetworkResult: result) {
             var currentCities = cities ?? [City]()
             currentCities.append(freshCity)

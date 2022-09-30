@@ -82,13 +82,11 @@ struct City {
                     return try JSONDecoder().decode(City.self, from: data)
                 } catch {
                     //TODO: Surface alert Firebase to the error
-                    print("Decoding error::: \(error.localizedDescription)")
                     return nil
                 }
                 
             //TODO: Surface alert Firebase to the error
-            case .failure(let error):
-                print("API error::: \(error.localizedDescription)")
+        case .failure(_):
             return nil
         }
     }

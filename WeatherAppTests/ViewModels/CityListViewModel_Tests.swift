@@ -12,15 +12,16 @@ import XCTest
 
 class CityListViewModel_Tests: XCTestCase {
     var objectToTest = CityListViewModel()
-    var mockDataManager: MockDataManager?
+    var mockDataManager: DataManagerProtocol = MockDataManager()
     
     override func setUpWithError() throws {
         super.setUp()
-        mockDataManager = MockDataManager()
+        //mockDataManager = MockDataManager()
+        objectToTest.dataManager = mockDataManager
     }
     
     override func tearDownWithError() throws {
-        mockDataManager = nil
+        //mockDataManager = nil
         super.tearDown()
     }
     

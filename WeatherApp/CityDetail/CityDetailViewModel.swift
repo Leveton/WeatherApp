@@ -30,9 +30,12 @@ class CityDetailViewModel: ObservableObject {
         }
     }
     
+    
     public func fetchSummaryWithCoordinates(_ coord: SimpleCoord) async {
-        let result: CityNetworkResult = await dataManager.fetchCurrentSummary(withCoordinates: coord)
+        let result: CityNetworkResult = await dataManager.fetchCurrentSummary(withName: nil, withCoordinates: coord)
+        
         if let freshCity = City.deserializeCity(withNetworkResult: result) {
+            
             DispatchQueue.main.async {
                 withAnimation {
                     self.city = freshCity
@@ -42,7 +45,7 @@ class CityDetailViewModel: ObservableObject {
     }
     
     public func fetchSummaryWithName(_ name: String) async {
-        let result: CityNetworkResult = await dataManager.fetchCurrentSummary(withName: name)
+        let result: CityNetworkResult = await dataManager.fetchCurrentSummary(withName: name, withCoordinates: nil)
         if let freshCity = City.deserializeCity(withNetworkResult: result) {
             DispatchQueue.main.async {
                 withAnimation {
