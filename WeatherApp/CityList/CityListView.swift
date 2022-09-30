@@ -20,11 +20,10 @@ struct CityListView: View {
             List {
                 Section {
                     HStack{
-                        Text("Popular Cities")
+                        Text("Your Cities")
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .font(.custom("SanFranciscoRounded-Regular", size: 25))
                             .padding([.leading], 10)
-                            .background(.white)
                         Button {
                             viewModel.didTapAddCityHandler?()
             
@@ -34,15 +33,22 @@ struct CityListView: View {
                         .padding([.trailing], 10)
                     }
                 }
-                ForEach(cities, id: \.uuid) { entry in
-                    CityRowView(entry: entry)
+                Section {
+                    ForEach(cities, id: \.uuid) { entry in
+                        CityRowView(entry: entry)
+                            .onTapGesture {
+                                        print("Tapped cell")  // This triggers when you tap anywhere in the cell
+                                     }
+                    }
+                    .onDelete(perform: self.deleteItems)
+                    
                 }
-                .onDelete(perform: self.deleteItems)
             }
-            .listStyle(PlainListStyle())
+            .listStyle(GroupedListStyle())
             .refreshable {
                 print("Do your refresh work here")
             }
+            
         } else {
             VStack {
                 Spacer()

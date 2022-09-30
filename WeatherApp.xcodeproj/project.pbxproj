@@ -23,7 +23,7 @@
 		D13A5EF428E47EDE00BF8070 /* CityAddHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13A5EF328E47EDE00BF8070 /* CityAddHostingController.swift */; };
 		D13A5EF628E47EF300BF8070 /* CityAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13A5EF528E47EF300BF8070 /* CityAddView.swift */; };
 		D13A5EF828E47F0300BF8070 /* CityAddViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13A5EF728E47F0200BF8070 /* CityAddViewModel.swift */; };
-		D13A5EFA28E4809500BF8070 /* SearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13A5EF928E4809500BF8070 /* SearchResultsViewController.swift */; };
+		D13A5EFA28E4809500BF8070 /* CitySearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13A5EF928E4809500BF8070 /* CitySearchViewController.swift */; };
 		D13A5EFC28E485C100BF8070 /* GooglePlacesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13A5EFB28E485C100BF8070 /* GooglePlacesManager.swift */; };
 		D16CD0CD28E34C1600FBD846 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = D16CD0CC28E34C1600FBD846 /* City.swift */; };
 		D1E2D59228E1C56400FF705D /* CityListHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E2D59128E1C56400FF705D /* CityListHostingController.swift */; };
@@ -93,7 +93,7 @@
 		D13A5EF328E47EDE00BF8070 /* CityAddHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityAddHostingController.swift; sourceTree = "<group>"; };
 		D13A5EF528E47EF300BF8070 /* CityAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityAddView.swift; sourceTree = "<group>"; };
 		D13A5EF728E47F0200BF8070 /* CityAddViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityAddViewModel.swift; sourceTree = "<group>"; };
-		D13A5EF928E4809500BF8070 /* SearchResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsViewController.swift; sourceTree = "<group>"; };
+		D13A5EF928E4809500BF8070 /* CitySearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitySearchViewController.swift; sourceTree = "<group>"; };
 		D13A5EFB28E485C100BF8070 /* GooglePlacesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GooglePlacesManager.swift; sourceTree = "<group>"; };
 		D16CD0CC28E34C1600FBD846 /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
 		D1E2D59128E1C56400FF705D /* CityListHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityListHostingController.swift; sourceTree = "<group>"; };
@@ -248,7 +248,7 @@
 			isa = PBXGroup;
 			children = (
 				D13A5EF328E47EDE00BF8070 /* CityAddHostingController.swift */,
-				D13A5EF928E4809500BF8070 /* SearchResultsViewController.swift */,
+				D13A5EF928E4809500BF8070 /* CitySearchViewController.swift */,
 				D13A5EF528E47EF300BF8070 /* CityAddView.swift */,
 				D13A5EF728E47F0200BF8070 /* CityAddViewModel.swift */,
 			);
@@ -481,7 +481,7 @@
 				D10BA1F728E5D24D001D39CA /* Constants.swift in Sources */,
 				D12009BA28E0BD4C00BE55EC /* AppDelegate.swift in Sources */,
 				D1E2D59228E1C56400FF705D /* CityListHostingController.swift in Sources */,
-				D13A5EFA28E4809500BF8070 /* SearchResultsViewController.swift in Sources */,
+				D13A5EFA28E4809500BF8070 /* CitySearchViewController.swift in Sources */,
 				D1E40DCE28E13A6B008FC98A /* CityDetailView.swift in Sources */,
 				D13A5EF428E47EDE00BF8070 /* CityAddHostingController.swift in Sources */,
 				D1E2D59A28E27FB200FF705D /* City.swift in Sources */,

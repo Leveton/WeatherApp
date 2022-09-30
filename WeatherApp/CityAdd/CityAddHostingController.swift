@@ -14,8 +14,8 @@ class CityAddViewController: UIViewController {
     
     public let viewModel = CityAddViewModel()
     fileprivate lazy var googlePlacesManager: GooglePlacesManagerProtocol = GooglePlacesManager.sharedInstance
-    fileprivate let rvc = SearchResultsViewController()
-    fileprivate let svc = UISearchController(searchResultsController: SearchResultsViewController())
+    fileprivate let rvc = CitySearchViewController()
+    fileprivate let svc = UISearchController(searchResultsController: CitySearchViewController())
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +26,7 @@ class CityAddViewController: UIViewController {
     fileprivate func setUpSearchController() {
         svc.searchResultsUpdater = self
         navigationItem.searchController = svc
-        if let rvc = svc.searchResultsController as? SearchResultsViewController {
+        if let rvc = svc.searchResultsController as? CitySearchViewController {
             rvc.didAddCityHandler = {[weak self] simpleCoord in
                 self?.viewModel.didAddCityHandler?(simpleCoord)
             }
@@ -39,7 +39,7 @@ extension CityAddViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         guard let query = searchController.searchBar.text,
               !query.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty,
-              let rvc = searchController.searchResultsController as? SearchResultsViewController
+              let rvc = searchController.searchResultsController as? CitySearchViewController
         else {return}
         
         googlePlacesManager.findPlaces(query, completion: {result in

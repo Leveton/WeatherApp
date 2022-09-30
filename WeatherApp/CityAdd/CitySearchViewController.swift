@@ -1,5 +1,5 @@
 //
-//  SearchResultsViewController.swift
+//  CitySearchViewController.swift
 //  WeatherApp
 //
 //  Created by Michael Leveton on 9/28/22.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SearchResultsViewController: UIViewController {
+class CitySearchViewController: UIViewController {
     fileprivate var cities = [City]()
     fileprivate lazy var googlePlacesManager: GooglePlacesManagerProtocol = GooglePlacesManager.sharedInstance
     public var didAddCityHandler: ((SimpleCoord) -> Void)?
@@ -37,7 +37,7 @@ class SearchResultsViewController: UIViewController {
     }
 }
 
-extension SearchResultsViewController: UITableViewDelegate, UITableViewDataSource {
+extension CitySearchViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return cities.count
