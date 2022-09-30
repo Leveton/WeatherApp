@@ -9,41 +9,41 @@ import UIKit
 import SwiftUI
 
 class CityDetailViewController: UIViewController {
-    public var viewModel: CityDetailViewModel? {
-        didSet {
-            viewModel?.didTapCityListHandler = {[weak self] in
-                self?.performSegue(withIdentifier: cityDetailControllerToCityListController, sender: self)
-            }
-        }
-    }
+    public var viewModel = CityDetailViewModel()
     
     public var homeCity: City?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUpViewModel()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         Task {
+            viewModel.isRefreshing = true
             await refreshCity()
+            
+            withAnimation {
+                viewModel.isRefreshing = false
+            }
+        }
+    }
+    
+    private func setUpViewModel() {
+        viewModel.didTapCityListHandler = {[weak self] in
+            self?.performSegue(withIdentifier: cityDetailControllerToCityListController, sender: self)
+        }
+        
+        viewModel.didPullToRefreshHandler = {[weak self] in
+            Task {
+                await self?.refreshCity()
+            }
         }
     }
     
     private func refreshCity() async {
-        guard let vm = viewModel, let city = homeCity else {return}
-        
-        //Default to coordinates because it's much less error prone than name
-        if let coord = city.coord {
-            let simpleCoord = (lat: coord.latitude, long: coord.longitude)
-            await vm.fetchSummaryWithCoordinates(simpleCoord)
-        } else {
-            await vm.fetchSummaryWithName(city.name)
-        }
-    }
-    
-    @IBSegueAction func CityDetailViewControllerToCityDetailView(_ coder: NSCoder) -> UIViewController? {
-        //TODO: ask for location services to get current city
+        //TODO: ask for location services to get current city at app launch
         let currentCity: City = {
             if let homeCity = homeCity {
                 return homeCity
@@ -55,13 +55,18 @@ class CityDetailViewController: UIViewController {
             city.temp = 299.9
             city.feelsLike = 279.9
             city.description = "Slightly windy with a chance of showers"
-            homeCity = city
             return city
         }()
         
-        let vm = CityDetailViewModel(currentCity)
-        viewModel = vm
-        let cityDetailView = CityDetailView(viewModel: vm)
+        
+        await viewModel.fetchSummaryWithName(currentCity.name)
+        
+        homeCity = viewModel.city
+    }
+    
+    @IBSegueAction func CityDetailViewControllerToCityDetailView(_ coder: NSCoder) -> UIViewController? {
+        
+        let cityDetailView = CityDetailView(viewModel: viewModel)
         return  CityDetailHostingController(coder: coder, rootView: cityDetailView)
     }
     

@@ -15,14 +15,7 @@ class CityListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        viewModel.didTapAddCityHandler = {[weak self] in
-            self?.performSegue(withIdentifier: cityListControllerToCityAddController, sender: self)
-        }
-        
-        viewModel.didTapCityDetailHandler = {[weak self] city in
-            self?.chosenCity = city
-            self?.performSegue(withIdentifier: cityListControllerToCityDetailController, sender: self)
-        }
+        setUpViewModel()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -35,6 +28,20 @@ class CityListViewController: UIViewController {
         return CityListHostingController(coder: coder, rootView: cityListView)
     }
     
+    private func setUpViewModel() {
+        viewModel.didTapAddCityHandler = {[weak self] in
+            self?.performSegue(withIdentifier: cityListControllerToCityAddController, sender: self)
+        }
+        
+        viewModel.didTapCityDetailHandler = {[weak self] city in
+            self?.chosenCity = city
+            self?.performSegue(withIdentifier: cityListControllerToCityDetailController, sender: self)
+        }
+        
+        viewModel.didPullToRefreshHandler = {[weak self] in
+            self?.viewModel.fetchCities()
+        }
+    }
 }
 
 // MARK: - Navigation
@@ -47,7 +54,7 @@ extension CityListViewController {
             }
         }
         if segue.identifier == cityListControllerToCityDetailController, let vc = segue.destination as? CityDetailViewController {
-            vc.viewModel?.showCityList = false
+            vc.viewModel.showCityList = false
             if let chosenCity = chosenCity {
                 vc.homeCity = chosenCity
             }

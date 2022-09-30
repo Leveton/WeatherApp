@@ -13,6 +13,7 @@ class CityListViewModel: ObservableObject {
     fileprivate lazy var dataManager: DataManagerProtocol = DataManager.sharedInstance
     public var didTapAddCityHandler: (() -> Void)?
     public var didTapCityDetailHandler: ((City) -> Void)?
+    public var didPullToRefreshHandler: (() -> Void)?
     
     public var homeCity: City? {
         didSet {

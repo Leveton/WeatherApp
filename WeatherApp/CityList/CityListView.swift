@@ -46,7 +46,7 @@ struct CityListView: View {
             }
             .listStyle(GroupedListStyle())
             .refreshable {
-                
+                viewModel.didPullToRefreshHandler?()
             }
             
         } else {

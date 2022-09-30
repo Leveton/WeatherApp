@@ -9,15 +9,13 @@ import Foundation
 import DataManager
 
 class CityDetailViewModel: ObservableObject {
-    @Published public var city: City
+    @Published public var city: City?
     @Published public var showCityList = true
+    @Published var isRefreshing = false
     
     fileprivate lazy var dataManager: DataManagerProtocol = DataManager.sharedInstance
     public var didTapCityListHandler: (() -> Void)?
-    
-    init(_ city: City) {
-        self.city = city
-    }
+    public var didPullToRefreshHandler: (() -> Void)?
     
     public func fetchForecastWithCoordinates(_ coord: (lat: Double, long: Double)) async {
         let result: CityNetworkResult = await dataManager.fetchFiveDayForecast(withCoordinates: coord)
