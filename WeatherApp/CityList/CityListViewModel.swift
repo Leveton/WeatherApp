@@ -11,7 +11,7 @@ import SwiftUI
 
 class CityListViewModel: ObservableObject {
     @Published public var cities: [City]?
-    fileprivate lazy var dataManager: DataManagerProtocol = DataManager.sharedInstance
+    public lazy var dataManager: DataManagerProtocol = DataManager.sharedInstance
     public var didTapAddCityHandler: (() -> Void)?
     public var didTapCityDetailHandler: ((City) -> Void)?
     public var didPullToRefreshHandler: (() -> Void)?
@@ -71,7 +71,7 @@ class CityListViewModel: ObservableObject {
         }
     }
     
-    private func fetchCitiesAsync() async -> [City]? {
+    public func fetchCitiesAsync() async -> [City]? {
         guard let cities = cities else {return nil}
         let coordinates: [(lat: Double, long: Double)] = cities.compactMap({$0.simpleCoord})
         var updatedCities = [City]()

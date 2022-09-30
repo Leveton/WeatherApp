@@ -13,6 +13,7 @@ import CoreLocation
 
 class MockGoogleManager: GooglePlacesManagerProtocol {
     var called_completion = false
+    var passed_error: Error?
     
     func findPlaces(_ query: String, completion: @escaping (Result<[WeatherApp.City], Error>) -> Void) {
         let city1 = City(name: "London")

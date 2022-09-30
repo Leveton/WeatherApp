@@ -15,7 +15,7 @@ class CityDetailViewModel: ObservableObject {
     @Published var isRefreshing = false
     public var cities: [City]?
     
-    fileprivate lazy var dataManager: DataManagerProtocol = DataManager.sharedInstance
+    public lazy var dataManager: DataManagerProtocol = DataManager.sharedInstance
     public var didTapCityListHandler: (() -> Void)?
     public var didPullToRefreshHandler: (() -> Void)?
     

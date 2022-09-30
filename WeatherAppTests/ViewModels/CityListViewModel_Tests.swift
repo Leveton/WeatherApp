@@ -12,14 +12,15 @@ import XCTest
 
 class CityListViewModel_Tests: XCTestCase {
     var objectToTest = CityListViewModel()
+    var mockDataManager: MockDataManager?
     
     override func setUpWithError() throws {
         super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        mockDataManager = MockDataManager()
     }
     
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        mockDataManager = nil
         super.tearDown()
     }
     
@@ -28,5 +29,32 @@ class CityListViewModel_Tests: XCTestCase {
         
         XCTAssertEqual(objectToTest.homeCity?.name, "Miami")
         XCTAssertEqual(objectToTest.cities?.first?.name, "Miami")
+    }
+    
+    func test_addCityAsync() async {
+        let romeCoords = (lat: 41.9102415, long: 12.3959128)
+        
+        let cityArray = await objectToTest.addCityAsync(forCoordinates: romeCoords)
+        guard let name = cityArray?.first?.name  else {
+            XCTFail()
+            return
+        }
+        
+        XCTAssertEqual(name, "Rome")
+    }
+    
+    func test_fetchCitiesAsync() async {
+        var city = City(name: "Rome")
+        city.lat = 41.9102415
+        city.lon = 12.3959128
+        
+        objectToTest.cities = [city]
+        let cityArray = await objectToTest.fetchCitiesAsync()
+        guard let name = cityArray?.first?.name  else {
+            XCTFail()
+            return
+        }
+        
+        XCTAssertEqual(name, "Rome")
     }
 }

@@ -61,6 +61,9 @@ struct CityDetailView: View {
                         }
                         
                         Spacer()
+                        
+                        //TODO: Add 5-day by 3 hour forcast horizontal scroll view
+                        
                         if let desc = viewModel.city?.description {
                             Text("Summary: \(desc)")
                                 .frame(maxWidth: .infinity, alignment: .leading)

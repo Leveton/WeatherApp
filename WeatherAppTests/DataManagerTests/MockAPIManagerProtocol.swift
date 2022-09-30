@@ -9,6 +9,8 @@ import Foundation
 @testable import DataManager
 
 class MockAPIManager: APIManagerProtocol {
+    var called_completion = false
+    var passed_error: Error?
     var openWeatherAPIKey = "MOCK_API_KEY"
     
     var called_endpointURL = false
