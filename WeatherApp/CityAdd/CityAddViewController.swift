@@ -29,9 +29,11 @@ class CityAddViewController: UIViewController {
     fileprivate func setUpViewModel() {
         
         viewModel.didAddCityHandler = {[weak self] simpleCoord in
-            self?.dismiss(animated: true, completion: {
-                self?.didAddCityHandler?(simpleCoord)
-            })
+            DispatchQueue.main.async {
+                self?.dismiss(animated: true, completion: {
+                    self?.didAddCityHandler?(simpleCoord)
+                })
+            }
         }
         
         viewModel.citiesFoundHandler = {[weak self] in

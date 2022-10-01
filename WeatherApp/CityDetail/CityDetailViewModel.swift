@@ -33,9 +33,7 @@ class CityDetailViewModel: ObservableObject {
     
     public func fetchSummaryWithCoordinates(_ coord: SimpleCoord) async {
         let result: CityNetworkResult = await dataManager.fetchCurrentSummary(withName: nil, withCoordinates: coord)
-        
         if let freshCity = City.deserializeCity(withNetworkResult: result) {
-            
             DispatchQueue.main.async {
                 withAnimation {
                     self.city = freshCity
