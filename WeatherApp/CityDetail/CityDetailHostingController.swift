@@ -42,6 +42,7 @@ class CityDetailViewController: UIViewController {
     
     private func refreshCity() async {
         //TODO: ask for location services to get current city at app launch
+        
         //For now just default to Manhattan.
         let currentCity: City = {
             if let homeCity = viewModel.city {
@@ -74,7 +75,7 @@ extension CityDetailViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == cityDetailControllerToCityListController, let vc = segue.destination as? CityListViewController {
             if let cities = viewModel.cities {
-                vc.viewModel.cities = cities
+                //vc.viewModel.cities = cities
             } else {
                 vc.viewModel.homeCity = viewModel.city
             }
@@ -83,7 +84,7 @@ extension CityDetailViewController {
     
     @IBAction func unwindCityList(segue: UIStoryboardSegue) {
         if let vc = segue.source as? CityListViewController {
-            viewModel.cities = vc.viewModel.cities
+            //viewModel.cities = vc.viewModel.cities
         }
     }
 }

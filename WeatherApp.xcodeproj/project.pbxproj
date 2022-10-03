@@ -37,6 +37,8 @@
 		D1E7EFF528E7494E0073DEC0 /* DataManagerProtocol_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E7EFF328E7494E0073DEC0 /* DataManagerProtocol_Tests.swift */; };
 		D1E7EFF828E749770073DEC0 /* MockAPIManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E7EFF628E749770073DEC0 /* MockAPIManagerProtocol.swift */; };
 		D1E7EFF928E749770073DEC0 /* MockDataManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E7EFF728E749770073DEC0 /* MockDataManagerProtocol.swift */; };
+		D1F30ADB28EB1695007DB4FE /* CityPersisted+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F30AD928EB1695007DB4FE /* CityPersisted+CoreDataClass.swift */; };
+		D1F30ADC28EB1695007DB4FE /* CityPersisted+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F30ADA28EB1695007DB4FE /* CityPersisted+CoreDataProperties.swift */; };
 		D1F3141228EA8D2B0096087D /* MockGoogleManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F3141128EA8D2B0096087D /* MockGoogleManagerProtocol.swift */; };
 /* End PBXBuildFile section */
 
@@ -99,6 +101,8 @@
 		D1E7EFF328E7494E0073DEC0 /* DataManagerProtocol_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManagerProtocol_Tests.swift; sourceTree = "<group>"; };
 		D1E7EFF628E749770073DEC0 /* MockAPIManagerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockAPIManagerProtocol.swift; sourceTree = "<group>"; };
 		D1E7EFF728E749770073DEC0 /* MockDataManagerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockDataManagerProtocol.swift; sourceTree = "<group>"; };
+		D1F30AD928EB1695007DB4FE /* CityPersisted+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CityPersisted+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		D1F30ADA28EB1695007DB4FE /* CityPersisted+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CityPersisted+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		D1F3141128EA8D2B0096087D /* MockGoogleManagerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MockGoogleManagerProtocol.swift; path = DataManagerTests/MockGoogleManagerProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -241,17 +245,18 @@
 		D1E2D59728E27F8200FF705D /* Data Model */ = {
 			isa = PBXGroup;
 			children = (
-				D1E2D59828E27F8B00FF705D /* CityData */,
+				D1F30AD428EB1005007DB4FE /* ManagedObjects */,
+				D1E2D59828E27F8B00FF705D /* InternalObjects */,
 			);
 			path = "Data Model";
 			sourceTree = "<group>";
 		};
-		D1E2D59828E27F8B00FF705D /* CityData */ = {
+		D1E2D59828E27F8B00FF705D /* InternalObjects */ = {
 			isa = PBXGroup;
 			children = (
 				D1E2D59928E27FB200FF705D /* City.swift */,
 			);
-			path = CityData;
+			path = InternalObjects;
 			sourceTree = "<group>";
 		};
 		D1E40DBA28E10D2F008FC98A /* Managers */ = {
@@ -281,6 +286,15 @@
 				D1E7EFF328E7494E0073DEC0 /* DataManagerProtocol_Tests.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		D1F30AD428EB1005007DB4FE /* ManagedObjects */ = {
+			isa = PBXGroup;
+			children = (
+				D1F30AD928EB1695007DB4FE /* CityPersisted+CoreDataClass.swift */,
+				D1F30ADA28EB1695007DB4FE /* CityPersisted+CoreDataProperties.swift */,
+			);
+			path = ManagedObjects;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -435,11 +449,13 @@
 				D13A5EFC28E485C100BF8070 /* GooglePlacesManager.swift in Sources */,
 				D12009C428E0BD4C00BE55EC /* WeatherApp.xcdatamodeld in Sources */,
 				D1E40DBE28E10D7C008FC98A /* DataManager.swift in Sources */,
+				D1F30ADB28EB1695007DB4FE /* CityPersisted+CoreDataClass.swift in Sources */,
 				D1E40DCC28E13A10008FC98A /* CityDetailHostingController.swift in Sources */,
 				D13A5EF828E47F0300BF8070 /* CityAddViewModel.swift in Sources */,
 				D10BA1F728E5D24D001D39CA /* Constants.swift in Sources */,
 				D12009BA28E0BD4C00BE55EC /* AppDelegate.swift in Sources */,
 				D1E2D59228E1C56400FF705D /* CityListHostingController.swift in Sources */,
+				D1F30ADC28EB1695007DB4FE /* CityPersisted+CoreDataProperties.swift in Sources */,
 				D1E40DCE28E13A6B008FC98A /* CityDetailView.swift in Sources */,
 				D13A5EF428E47EDE00BF8070 /* CityAddViewController.swift in Sources */,
 				D1E2D59A28E27FB200FF705D /* City.swift in Sources */,

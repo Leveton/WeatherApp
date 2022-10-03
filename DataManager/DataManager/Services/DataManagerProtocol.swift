@@ -9,6 +9,7 @@ import Foundation
 
 public protocol DataManagerProtocol {
     var apiManager: APIManagerProtocol { get }
+    //var relationalDataManager: RelationalDataProtocol { get }
     func fetchCurrentSummary(withName name: String?, withCoordinates coordinates: (lat: Double, long: Double)?) async -> Result<Data?, APIManagerError>
     func fetchCities(_ cityCoordinates: [(lat: Double, long: Double)]) async throws -> [Data]
 }

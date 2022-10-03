@@ -83,7 +83,7 @@ extension APIManagerProtocol {
                         dataArray.append(data)
                     }
                 case .failure(let error):
-                    print("fetch cities error::: \(error)")
+                    print("fetch cities custom error::: \(error)")
                 }
             }
             return dataArray

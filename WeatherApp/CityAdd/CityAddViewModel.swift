@@ -24,7 +24,7 @@ class CityAddViewModel {
                 
             case .failure(let error):
                 //TODO: surface error
-                print("get coord error::: \(error)")
+                print("get coord custom error::: \(error)")
             }
         })
     }
@@ -38,7 +38,7 @@ class CityAddViewModel {
                     self?.citiesFoundHandler?()
                 }
             case .failure(let error):
-                print("places error::: \(error.localizedDescription)")
+                print("places custom error::: \(error.localizedDescription)")
             }
         })
     }

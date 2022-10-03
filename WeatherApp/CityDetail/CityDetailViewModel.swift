@@ -14,8 +14,8 @@ class CityDetailViewModel: ObservableObject {
     @Published public var showCityList = true
     @Published var isRefreshing = false
     public var cities: [City]?
-    
     public lazy var dataManager: DataManagerProtocol = DataManager.sharedInstance
+    public lazy var relationalDataManager: RelationalDataProtocol = RelationalDataManager.sharedInstance
     public var didTapCityListHandler: (() -> Void)?
     public var didPullToRefreshHandler: (() -> Void)?
     
@@ -30,25 +30,48 @@ class CityDetailViewModel: ObservableObject {
         }
     }
     
-    
     public func fetchSummaryWithCoordinates(_ coord: SimpleCoord) async {
         let result: CityNetworkResult = await dataManager.fetchCurrentSummary(withName: nil, withCoordinates: coord)
-        if let freshCity = City.deserializeCity(withNetworkResult: result) {
-            DispatchQueue.main.async {
-                withAnimation {
-                    self.city = freshCity
-                }
+        guard let freshCity = City.deserializeCity(withNetworkResult: result) else {return}
+        
+        //save to CD
+        persistCity(freshCity)
+        
+        //redraw swiftui
+        DispatchQueue.main.async {
+            withAnimation {
+                self.city = freshCity
             }
         }
     }
     
     public func fetchSummaryWithName(_ name: String) async {
         let result: CityNetworkResult = await dataManager.fetchCurrentSummary(withName: name, withCoordinates: nil)
-        if let freshCity = City.deserializeCity(withNetworkResult: result) {
-            DispatchQueue.main.async {
-                withAnimation {
-                    self.city = freshCity
-                }
+        guard let freshCity = City.deserializeCity(withNetworkResult: result) else {return}
+        
+        //save to CD
+        persistCity(freshCity)
+        
+        //redraw swiftui
+        DispatchQueue.main.async {
+            withAnimation {
+                self.city = freshCity
+            }
+        }
+    }
+}
+
+//Core Data
+extension CityDetailViewModel {
+    fileprivate func persistCity(_ city: City) {
+        let context = relationalDataManager.managedObjectContext
+        context.perform {
+            let _: [CityPersisted] = [city].compactMap({CityPersisted(withCity: $0, in: context)})
+            
+            do {
+              try context.save()
+            } catch let error as NSError {
+              print("Could not save persisted city::: \(error), \(error.userInfo)")
             }
         }
     }

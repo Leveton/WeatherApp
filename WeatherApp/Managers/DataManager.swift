@@ -11,7 +11,6 @@ import CoreData
 
 open class DataManager: DataManagerProtocol {
     public var apiManager: APIManagerProtocol = APIManager.sharedInstance
-    
     static let sharedInstance = DataManager()
 }
 
@@ -28,7 +27,7 @@ open class RelationalDataManager: RelationalDataProtocol {
                 // Core data setup should not emit a fatal error because persistence and off-line data is just a nice to have
             }
         })
-        
+        print("Loaded computed persistentContainer:::")
         return container
     }()
     
@@ -44,7 +43,7 @@ open class RelationalDataManager: RelationalDataProtocol {
             return .success(objects)
         } catch let error as NSError {
             //TODO: Check the error message to determine which enum value to pass to Firebase Crashlytics
-            print("Fetch request error::: \(error.localizedDescription)")
+            print("Fetch request custom error::: \(error.localizedDescription)")
             return .failure(.genericError)
         }
     }

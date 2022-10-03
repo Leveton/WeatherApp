@@ -20,7 +20,7 @@ protocol WeatherProtocol {
     var simpleCoord: SimpleCoord? {get}
 }
 
-struct City {
+public struct City {
 
     //MARK: Required
     let uuid = UUID().uuidString
@@ -94,7 +94,7 @@ struct City {
 }
 
 extension City: Equatable {
-    static func == (lhs: City, rhs: City) -> Bool {
+    public static func == (lhs: City, rhs: City) -> Bool {
         if lhs.name == rhs.name && lhs.lat == rhs.lat && lhs.lon == rhs.lon {
             return true
         }
@@ -105,7 +105,7 @@ extension City: Equatable {
 
 extension City: Codable {
 
-    init(from decoder: Decoder) throws {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: RootKeys.self)
         openWeatherID = try? container.decode(Int.self, forKey: .id)
         timezone = try? container.decode(Int.self, forKey: .timezone)
@@ -134,9 +134,28 @@ extension City: Codable {
         description = weatherContainer?.description
     }
     
-//    init(withCityPersisted: Ci) {
-//
-//    }
+    //Serialize from Core Data to a lightweight struct
+    //Passing raw CD objects around the app is not thread safe
+    init(withCityPersisted cityPersisted: CityPersisted) {
+        
+        self.name = cityPersisted.name ?? ""
+        self.country = cityPersisted.country
+        self.description = cityPersisted.descriptionString
+        self.feelsLike = cityPersisted.feelsLike?.floatValue
+        self.googlePlacesID = cityPersisted.googlePlacesID
+        self.humidity = cityPersisted.humidity?.intValue
+        self.lat = cityPersisted.lat?.doubleValue
+        self.lon = cityPersisted.lon?.doubleValue
+        self.openWeatherID = cityPersisted.openWeatherID?.intValue
+        self.sunrise = cityPersisted.sunrise?.intValue
+        self.sunset = cityPersisted.sunset?.intValue
+        self.temp = cityPersisted.temp?.floatValue
+        self.timezone = cityPersisted.timezone?.intValue
+        self.tempMax = cityPersisted.tempMax?.floatValue
+        self.tempMin = cityPersisted.tempMin?.floatValue
+        self.windSpeed = cityPersisted.windSpeed?.floatValue
+        
+    }
 }
 
 //MARK: methods and computed properties

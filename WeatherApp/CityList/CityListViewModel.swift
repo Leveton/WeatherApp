@@ -12,9 +12,14 @@ import SwiftUI
 class CityListViewModel: ObservableObject {
     @Published public var cities: [City]?
     public lazy var dataManager: DataManagerProtocol = DataManager.sharedInstance
+    public lazy var relationalDataManager: RelationalDataProtocol = RelationalDataManager.sharedInstance
     public var didTapAddCityHandler: (() -> Void)?
     public var didTapCityDetailHandler: ((City) -> Void)?
     public var didPullToRefreshHandler: (() -> Void)?
+    
+    init() {
+        loadPersistedCities()
+    }
     
     public var homeCity: City? {
         didSet {
@@ -37,32 +42,28 @@ class CityListViewModel: ObservableObject {
         }
         
         Task {
-            if let updatedCities = await addCityAsync(forCoordinates: coords) {
-                DispatchQueue.main.async {[weak self] in
-                    //redraw SwiftUI
-                    withAnimation {
-                        self?.cities = updatedCities
-                    }
-                }
+            if let freshCity: City = await addCityAsync(forCoordinates: coords) {
+                //Save to CD
+                persistCities([freshCity])
+                
+                //redraw SwiftUI
+                updateCities(withCity: freshCity)
             }
         }
     }
     
-    public func addCityAsync(forCoordinates coords: SimpleCoord) async -> [City]? {
+    public func addCityAsync(forCoordinates coords: SimpleCoord) async -> City? {
         let result: CityNetworkResult = await dataManager.fetchCurrentSummary(withName: nil, withCoordinates: coords)
-        if let freshCity = City.deserializeCity(withNetworkResult: result) {
-            var currentCities = cities ?? [City]()
-            currentCities.append(freshCity)
-            return currentCities
-            
-        }
-        
-        return nil
+        return City.deserializeCity(withNetworkResult: result)
     }
     
     public func fetchCities() {
         Task {
             if let updatedCities = await fetchCitiesAsync() {
+                
+                //Save to CD
+                persistCities(updatedCities)
+                
                 DispatchQueue.main.async {[weak self] in
                     //redraw swiftUI views
                     self?.cities = updatedCities
@@ -84,7 +85,7 @@ class CityListViewModel: ObservableObject {
                     let city: City = try JSONDecoder().decode(City.self, from: data)
                     updatedCities.append(city)
                 } catch {
-                    print("Decoding error::: \(error.localizedDescription)")
+                    print("Decoding custom error::: \(error.localizedDescription)")
                 }
             }
 
@@ -93,5 +94,56 @@ class CityListViewModel: ObservableObject {
         }
         
         return updatedCities
+    }
+    
+    fileprivate func updateCities(withCity city: City) {
+        var currentCities = cities ?? [City]()
+        currentCities.append(city)
+        
+        //redraw SwiftUI
+        DispatchQueue.main.async {[weak self] in
+            withAnimation {
+                self?.cities = currentCities
+            }
+        }
+    }
+
+}
+
+//MARK: core data
+extension CityListViewModel {
+    fileprivate func persistCities(_ cities: [City]) {
+        let context = relationalDataManager.managedObjectContext
+        context.perform {
+            let _: [CityPersisted] = cities.compactMap({CityPersisted(withCity: $0, in: context)})
+            
+            do {
+              try context.save()
+            } catch let error as NSError {
+              print("Could not save persisted city::: \(error), \(error.userInfo)")
+            }
+        }
+    }
+    
+    fileprivate func loadPersistedCities() {
+        let context = relationalDataManager.managedObjectContext
+        
+        context.perform {
+            let result = self.relationalDataManager.fetchAllObjects(forEntityName: "CityPersisted", in: context, optionalPredicate: nil)
+            
+            switch result {
+            case .success(let objects):
+                if let cities = objects as? [CityPersisted] {
+                    let internalCities = cities.compactMap({City(withCityPersisted: $0)})
+                    
+                    //Redraw SwiftUI
+                    DispatchQueue.main.async {[weak self] in
+                        self?.cities = internalCities
+                    }
+                }
+            case .failure(let error):
+                print("load persisted cities custom error::: \(error.localizedDescription)")
+            }
+        }
     }
 }
