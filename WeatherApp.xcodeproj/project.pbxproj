@@ -22,7 +22,6 @@
 		D13A5EFC28E485C100BF8070 /* GooglePlacesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13A5EFB28E485C100BF8070 /* GooglePlacesManager.swift */; };
 		D16CD0CD28E34C1600FBD846 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = D16CD0CC28E34C1600FBD846 /* City.swift */; };
 		D19F122328E74B89008B5089 /* CityListViewModel_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D19F122228E74B89008B5089 /* CityListViewModel_Tests.swift */; };
-		D19F122528E74CFE008B5089 /* MockGoogleManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D19F122428E74CFE008B5089 /* MockGoogleManagerProtocol.swift */; };
 		D19F122728E74D97008B5089 /* CityAddViewModel_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D19F122628E74D97008B5089 /* CityAddViewModel_Tests.swift */; };
 		D19F122928E76899008B5089 /* CityDetailViewModel_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D19F122828E76898008B5089 /* CityDetailViewModel_Tests.swift */; };
 		D1E2D59228E1C56400FF705D /* CityListHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E2D59128E1C56400FF705D /* CityListHostingController.swift */; };
@@ -38,6 +37,7 @@
 		D1E7EFF528E7494E0073DEC0 /* DataManagerProtocol_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E7EFF328E7494E0073DEC0 /* DataManagerProtocol_Tests.swift */; };
 		D1E7EFF828E749770073DEC0 /* MockAPIManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E7EFF628E749770073DEC0 /* MockAPIManagerProtocol.swift */; };
 		D1E7EFF928E749770073DEC0 /* MockDataManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E7EFF728E749770073DEC0 /* MockDataManagerProtocol.swift */; };
+		D1F3141228EA8D2B0096087D /* MockGoogleManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F3141128EA8D2B0096087D /* MockGoogleManagerProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,7 +84,6 @@
 		D13A5EFB28E485C100BF8070 /* GooglePlacesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GooglePlacesManager.swift; sourceTree = "<group>"; };
 		D16CD0CC28E34C1600FBD846 /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
 		D19F122228E74B89008B5089 /* CityListViewModel_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityListViewModel_Tests.swift; sourceTree = "<group>"; };
-		D19F122428E74CFE008B5089 /* MockGoogleManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockGoogleManagerProtocol.swift; sourceTree = "<group>"; };
 		D19F122628E74D97008B5089 /* CityAddViewModel_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityAddViewModel_Tests.swift; sourceTree = "<group>"; };
 		D19F122828E76898008B5089 /* CityDetailViewModel_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityDetailViewModel_Tests.swift; sourceTree = "<group>"; };
 		D1E2D59128E1C56400FF705D /* CityListHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityListHostingController.swift; sourceTree = "<group>"; };
@@ -100,6 +99,7 @@
 		D1E7EFF328E7494E0073DEC0 /* DataManagerProtocol_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManagerProtocol_Tests.swift; sourceTree = "<group>"; };
 		D1E7EFF628E749770073DEC0 /* MockAPIManagerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockAPIManagerProtocol.swift; sourceTree = "<group>"; };
 		D1E7EFF728E749770073DEC0 /* MockDataManagerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockDataManagerProtocol.swift; sourceTree = "<group>"; };
+		D1F3141128EA8D2B0096087D /* MockGoogleManagerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MockGoogleManagerProtocol.swift; path = DataManagerTests/MockGoogleManagerProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -214,7 +214,7 @@
 				D19F122128E74B3E008B5089 /* ViewModels */,
 				D1E7EFF028E749120073DEC0 /* DataManagerTests */,
 				D16CD0CC28E34C1600FBD846 /* City.swift */,
-				D19F122428E74CFE008B5089 /* MockGoogleManagerProtocol.swift */,
+				D1F3141128EA8D2B0096087D /* MockGoogleManagerProtocol.swift */,
 			);
 			path = WeatherAppTests;
 			sourceTree = "<group>";
@@ -454,11 +454,11 @@
 			files = (
 				D1E7EFF428E7494E0073DEC0 /* APIManagerProtocol_Tests.swift in Sources */,
 				D16CD0CD28E34C1600FBD846 /* City.swift in Sources */,
+				D1F3141228EA8D2B0096087D /* MockGoogleManagerProtocol.swift in Sources */,
 				D1E7EFF528E7494E0073DEC0 /* DataManagerProtocol_Tests.swift in Sources */,
 				D19F122328E74B89008B5089 /* CityListViewModel_Tests.swift in Sources */,
 				D1E7EFF828E749770073DEC0 /* MockAPIManagerProtocol.swift in Sources */,
 				D1E7EFF928E749770073DEC0 /* MockDataManagerProtocol.swift in Sources */,
-				D19F122528E74CFE008B5089 /* MockGoogleManagerProtocol.swift in Sources */,
 				D19F122928E76899008B5089 /* CityDetailViewModel_Tests.swift in Sources */,
 				D19F122728E74D97008B5089 /* CityAddViewModel_Tests.swift in Sources */,
 			);

@@ -8,6 +8,7 @@
 import Foundation
 import CoreLocation
 import DataManager
+import CoreData
 
 //TODO: use this for all simple coords
 typealias SimpleCoord = (lat: Double, long: Double)
@@ -22,7 +23,7 @@ protocol WeatherProtocol {
 struct City {
 
     //MARK: Required
-    let uuid = UUID()
+    let uuid = UUID().uuidString
     var name: String
     
     //MARK: Optional
@@ -132,6 +133,10 @@ extension City: Codable {
         let weatherContainer = try? container.decode([Weather].self, forKey: .weather).first
         description = weatherContainer?.description
     }
+    
+//    init(withCityPersisted: Ci) {
+//
+//    }
 }
 
 //MARK: methods and computed properties

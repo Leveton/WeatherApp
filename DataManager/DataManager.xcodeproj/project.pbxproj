@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		D181546D28E0BF4F00F0C652 /* DataManager.h in Headers */ = {isa = PBXBuildFile; fileRef = D181546128E0BF4F00F0C652 /* DataManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D1C9E4C228EA6E6800E011F3 /* RelationalDataProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C9E4C128EA6E6800E011F3 /* RelationalDataProtocol.swift */; };
 		D1E40DB728E108F4008FC98A /* DataManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E40DB628E108F4008FC98A /* DataManagerProtocol.swift */; };
 		D1E40DB928E10959008FC98A /* APIManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E40DB828E10959008FC98A /* APIManagerProtocol.swift */; };
 /* End PBXBuildFile section */
@@ -15,6 +16,7 @@
 /* Begin PBXFileReference section */
 		D181545E28E0BF4F00F0C652 /* DataManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DataManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D181546128E0BF4F00F0C652 /* DataManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataManager.h; sourceTree = "<group>"; };
+		D1C9E4C128EA6E6800E011F3 /* RelationalDataProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelationalDataProtocol.swift; sourceTree = "<group>"; };
 		D1E40DB628E108F4008FC98A /* DataManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManagerProtocol.swift; sourceTree = "<group>"; };
 		D1E40DB828E10959008FC98A /* APIManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManagerProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -35,6 +37,7 @@
 			children = (
 				D1E40DB628E108F4008FC98A /* DataManagerProtocol.swift */,
 				D1E40DB828E10959008FC98A /* APIManagerProtocol.swift */,
+				D1C9E4C128EA6E6800E011F3 /* RelationalDataProtocol.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -147,6 +150,7 @@
 			files = (
 				D1E40DB928E10959008FC98A /* APIManagerProtocol.swift in Sources */,
 				D1E40DB728E108F4008FC98A /* DataManagerProtocol.swift in Sources */,
+				D1C9E4C228EA6E6800E011F3 /* RelationalDataProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
