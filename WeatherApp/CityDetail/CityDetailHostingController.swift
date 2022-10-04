@@ -77,7 +77,7 @@ extension CityDetailViewController {
             if let cities = viewModel.cities {
                 //vc.viewModel.cities = cities
             } else {
-                vc.viewModel.homeCity = viewModel.city
+                //vc.viewModel.homeCity = viewModel.city
             }
         }
     }

@@ -34,11 +34,9 @@ class CityListViewModel: ObservableObject {
     
     public func addCity(forCoordinates coords: SimpleCoord) {
         //prevent dups
-        for city in cities ?? [] {
-            guard let simpleCoord = city.simpleCoord else {continue}
-            if simpleCoord == coords {
-               return
-            }
+        //let fl = Float(coords.long)
+        guard (cities ?? []).first(where: {$0.lat == coords.lat && $0.lon == coords.long}) == nil else {
+            return
         }
         
         Task {
@@ -75,7 +73,7 @@ class CityListViewModel: ObservableObject {
     public func fetchCitiesAsync() async -> [City]? {
         guard let cities = cities else {return nil}
         let coordinates: [(lat: Double, long: Double)] = cities.compactMap({$0.simpleCoord})
-        var updatedCities = [City]()
+        var updatedCities = cities
         
         do {
             let dataArray = try await dataManager.fetchCities(coordinates)
@@ -83,7 +81,11 @@ class CityListViewModel: ObservableObject {
             for data in dataArray {
                 do {
                     let city: City = try JSONDecoder().decode(City.self, from: data)
-                    updatedCities.append(city)
+                    //prevent dups
+                    if cities.first(where: {$0 == city}) == nil {
+                        print("fetch cities openweather ID::: \(city.openWeatherID)")
+                        updatedCities.append(city)
+                    }
                 } catch {
                     print("Decoding custom error::: \(error.localizedDescription)")
                 }
@@ -98,6 +100,7 @@ class CityListViewModel: ObservableObject {
     
     fileprivate func updateCities(withCity city: City) {
         var currentCities = cities ?? [City]()
+        guard currentCities.first(where: {$0 == city}) == nil else {return}
         currentCities.append(city)
         
         //redraw SwiftUI
@@ -135,6 +138,9 @@ extension CityListViewModel {
             case .success(let objects):
                 if let cities = objects as? [CityPersisted] {
                     let internalCities = cities.compactMap({City(withCityPersisted: $0)})
+                    
+                    //prevent dups
+                    //let citySet: Set = Set(internalCities)
                     
                     //Redraw SwiftUI
                     DispatchQueue.main.async {[weak self] in

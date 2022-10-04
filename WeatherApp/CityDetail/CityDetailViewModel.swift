@@ -64,8 +64,16 @@ class CityDetailViewModel: ObservableObject {
 //Core Data
 extension CityDetailViewModel {
     fileprivate func persistCity(_ city: City) {
+        guard let openWeatherID = city.openWeatherID else {return}
+        
         let context = relationalDataManager.managedObjectContext
         context.perform {
+            //prevent dups
+            let predicate = NSPredicate(format: "openWeatherID == %ld", openWeatherID)
+            guard self.relationalDataManager.fetchObject(forEntityName: "CityPersisted", in: context, predicate: predicate) == nil else {
+                return
+            }
+            
             let _: [CityPersisted] = [city].compactMap({CityPersisted(withCity: $0, in: context)})
             
             do {

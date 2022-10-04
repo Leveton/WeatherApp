@@ -27,7 +27,8 @@ public struct City {
     var name: String
     
     //MARK: Optional
-    var lat: Double? //TODO: Use CLLocationCoordinate2D
+    //TODO: Make these floats both here and in CD for more accurate transitions
+    var lat: Double?
     var lon: Double?
     var openWeatherID: Int?
     var googlePlacesID: String?
@@ -95,7 +96,15 @@ public struct City {
 
 extension City: Equatable {
     public static func == (lhs: City, rhs: City) -> Bool {
-        if lhs.name == rhs.name && lhs.lat == rhs.lat && lhs.lon == rhs.lon {
+        if lhs.openWeatherID == rhs.openWeatherID {
+            return true
+        }
+        if lhs.lat == rhs.lat && lhs.lon == rhs.lon {
+            return true
+        }
+        
+        //TODO: this might be too restrictive
+        if lhs.name == rhs.name {
             return true
         }
         

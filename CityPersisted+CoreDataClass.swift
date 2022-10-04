@@ -34,7 +34,8 @@ public class CityPersisted: NSManagedObject {
             print("CD serialzed double lat::: \(self.lat) original \(lat)")
         }
         if let lon = city.lon {
-            self.lon = NSDecimalNumber(value: lon)
+            self.lon = NSDecimalNumber(floatLiteral: lon)
+            print("CD serialzed double lon::: \(self.lon) original \(lon)")
         }
         if let openWeatherID = city.openWeatherID {
             self.openWeatherID = NSNumber(value: openWeatherID)
@@ -59,7 +60,9 @@ public class CityPersisted: NSManagedObject {
             self.tempMin = NSDecimalNumber(value: tempMin)
         }
         if let windSpeed = city.windSpeed {
-            self.windSpeed = NSDecimalNumber(value: windSpeed)
+            let windDouble = Double(windSpeed)
+            self.windSpeed = NSDecimalNumber(floatLiteral: windDouble)
+            print("CD serialzed float windSpeed::: \(self.windSpeed) original \(windSpeed) tempWind")
         }
     }
 }

@@ -15,6 +15,7 @@ public enum RelationalDataManagerError: Error {
 public protocol RelationalDataProtocol {
     var managedObjectContext: NSManagedObjectContext { get }
     func fetchAllObjects(forEntityName entityName: String, in context: NSManagedObjectContext, optionalPredicate: NSPredicate?) -> Result<[Any], RelationalDataManagerError>
+    func fetchObject(forEntityName entityName: String, in context: NSManagedObjectContext, predicate: NSPredicate) -> Any?
 }
 
 //For types that need to talk to the API as well as sync to Core Data

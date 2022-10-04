@@ -15,6 +15,22 @@ open class DataManager: DataManagerProtocol {
 }
 
 open class RelationalDataManager: RelationalDataProtocol {
+    public func fetchObject(forEntityName entityName: String, in context: NSManagedObjectContext, predicate: NSPredicate) -> Any? {
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: entityName)
+        fetchRequest.predicate = predicate
+        
+        do {
+            if let first = try context.fetch(fetchRequest).first {
+                return first
+            }
+            return nil
+        } catch let error as NSError {
+            //TODO: Check the error message to determine which enum value to pass to Firebase Crashlytics
+            print("fetchObject custom error::: \(error.localizedDescription)")
+            return nil
+        }
+    }
+    
     
     lazy public var managedObjectContext: NSManagedObjectContext = {
         return self.persistentContainer.viewContext
