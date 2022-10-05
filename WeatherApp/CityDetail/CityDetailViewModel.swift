@@ -68,19 +68,35 @@ extension CityDetailViewModel {
         
         let context = relationalDataManager.managedObjectContext
         context.perform {
-            //prevent dups
-            let predicate = NSPredicate(format: "openWeatherID == %ld", openWeatherID)
-            guard self.relationalDataManager.fetchObject(forEntityName: "CityPersisted", in: context, predicate: predicate) == nil else {
-                return
-            }
-            
-            let _: [CityPersisted] = [city].compactMap({CityPersisted(withCity: $0, in: context)})
-            
-            do {
-              try context.save()
-            } catch let error as NSError {
-              print("Could not save persisted city::: \(error), \(error.userInfo)")
-            }
+            self.relationalDataManager.walkArray(withServerArray: [city.uuid], againstCoreDataArray: [city.uuid],
+                update: {serverArrayKey, coreDataArrayKey in
+                    print("serverArrayKey \(serverArrayKey) coreDataArrayKey \(coreDataArrayKey)")
+                },
+                add: {serverObjectToAdd in
+                    print("serverObjectToAdd:: \(serverObjectToAdd)")
+                },
+                delete: {coreDataIndexToRemove in
+                    print("coreDataIndexToRemove:: \(coreDataIndexToRemove)")
+                },
+                withCompletion: {
+                    print("walk array completed::")
+                })
         }
+        
+//        context.perform {
+//            //prevent dups
+//            let predicate = NSPredicate(format: "openWeatherID == %ld", openWeatherID)
+//            guard self.relationalDataManager.fetchObject(forEntityName: "CityPersisted", in: context, predicate: predicate) == nil else {
+//                return
+//            }
+//
+//            let _: [CityPersisted] = [city].compactMap({CityPersisted(withCity: $0, in: context)})
+//
+//            do {
+//              try context.save()
+//            } catch let error as NSError {
+//              print("Could not save persisted city::: \(error), \(error.userInfo)")
+//            }
+//        }
     }
 }

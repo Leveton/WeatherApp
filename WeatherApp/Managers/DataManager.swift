@@ -64,5 +64,95 @@ open class RelationalDataManager: RelationalDataProtocol {
         }
     }
     
+    public func walkArray(withServerArray serverArrayKeys: [String], againstCoreDataArray coreDataArrayKeys: [String], update updateBlock: @escaping (String, String) -> Void, add addBlock: @escaping (String) -> Void, delete deleteBlock: @escaping (String) -> Void, withCompletion completion: @escaping () -> Void) {
+        var serverArrayKeys = serverArrayKeys.sorted()
+        var coreDataArrayKeys = coreDataArrayKeys.sorted()
+        
+//        //Scan up to Core Data objects that aren't null
+//        var firstNotNullIdIndex: Int = 0
+//        while firstNotNullIdIndex < coreDataArrayKeys.count && coreDataArrayKeys[firstNotNullIdIndex] == nil {
+//            firstNotNullIdIndex += 1
+//        }
+//
+//        //Create a new array of just core data objects with null ID's
+//        let nullObjects: [String]? = {
+//            if firstNotNullIdIndex > 0 {
+//                return Array(coreDataArrayKeys[0..<firstNotNullIdIndex])
+//            } else {
+//                return nil
+//            }
+//        }()
+        
+        //Update the core data arrays to have just existing objects
+//        if firstNotNullIdIndex > 0 {
+//            let notNullCount = coreDataArrayKeys.count - (nullObjects?.count ?? 0)
+//            if notNullCount > 0 {
+//                coreDataArrayKeys = Array(coreDataArrayKeys[firstNotNullIdIndex..<coreDataArrayKeys.count])
+//            } else {
+//                coreDataArrayKeys = []
+//            }
+//        }
+        
+        // Walk the two arrays
+        var serverObjectIDsToAdd = [String]()
+        var coreDataIndexesToRemove = [Int]()
+        
+        var serverArrayIndex: Int = 0
+        var coreDataArrayIndex: Int = 0
+        
+        while serverArrayIndex < serverArrayKeys.count || coreDataArrayIndex < coreDataArrayKeys.count {
+
+            var result: ComparisonResult = .orderedSame
+
+            if serverArrayIndex == serverArrayKeys.count {
+                //The left operand is greator than the right operand
+                result = .orderedDescending
+            } else if coreDataArrayIndex == coreDataArrayKeys.count {
+                //The right operand is greator than the left operand
+                result = .orderedAscending
+            } else {
+
+                let serverObjectValue = serverArrayKeys[serverArrayIndex]
+                let serverObjectValueString = "\(serverObjectValue)"
+                let coreDataObjectValue = coreDataArrayKeys[coreDataArrayIndex]
+                let coreDataObjectValueString = "\(coreDataObjectValue)"
+
+                result = serverObjectValueString.compare(coreDataObjectValueString)
+
+            }
+
+            switch result {
+            case .orderedSame:
+                //Key matches for both arrays so update with the object from the server
+                updateBlock(serverArrayKeys[serverArrayIndex], coreDataArrayKeys[coreDataArrayIndex])
+                serverArrayIndex += 1
+                coreDataArrayIndex += 1
+            case .orderedAscending:
+                //Found new server object to add
+                serverObjectIDsToAdd.append(serverArrayKeys[serverArrayIndex])
+                serverArrayIndex += 1
+            case .orderedDescending:
+                //core data object present that's missing from the server
+                coreDataIndexesToRemove.append(coreDataArrayIndex)
+                coreDataArrayIndex += 1
+            }
+
+        }
+        
+        coreDataIndexesToRemove.forEach { index in
+            deleteBlock(coreDataArrayKeys[index])
+        }
+
+//        nullObjects?.forEach{
+//            deleteBlock($0)
+//        }
+
+        serverObjectIDsToAdd.forEach {
+            addBlock($0)
+        }
+        
+        completion()
+    }
+    
     static let sharedInstance = RelationalDataManager()
 }
